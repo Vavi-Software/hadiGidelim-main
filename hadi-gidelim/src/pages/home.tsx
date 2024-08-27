@@ -4,7 +4,8 @@ import PremiumCard from "../components/home/premiumBox.tsx"; // Doğru yolu beli
 import Box from "../components/common/customBox.tsx"; // Doğru yolu belirleyin
 import { Grid } from "@mui/material";
 import '../css/home.css'
-import BusinessCard from "../components/home/businesses-card.tsx";
+import BusinessCard from "../components/common/businesses-card.tsx";
+import Footer from "../components/common/footer.tsx";
 
 function Home() {
     return (
@@ -30,6 +31,7 @@ function Home() {
                 imageUrl="https://via.placeholder.com/300"
                 onButtonClick={() => window.location.href = 'https://www.example.com'}
             />
+            <Footer></Footer>
             {/* Box Component */}
         </div>
     );
