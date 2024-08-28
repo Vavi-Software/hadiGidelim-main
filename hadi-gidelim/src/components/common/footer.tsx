@@ -72,7 +72,7 @@ Ankara'da gezilecek her yer tek sayfada. O zaman HADİ GİDELİM.            </T
 
             {/* Copyright Section */}
             <Typography variant="body2" color="textSecondary">
-                © {new Date().getFullYear()} VAVI SOFTWARE Tarafından Yapılmıştır.
+                © {new Date().getFullYear()} <a href="https://vavisoftware.com.tr">VAVI SOFTWARE</a> Tarafından Yapılmıştır.
             </Typography>
         </Box>
     );

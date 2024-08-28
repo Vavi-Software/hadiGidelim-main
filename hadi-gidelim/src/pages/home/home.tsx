@@ -1,18 +1,20 @@
-import Navbar from "../components/common/navbar.tsx";
-import Carousel from "../components/home/carousel.tsx";
-import PremiumCard from "../components/home/premiumBox.tsx"; // Doğru yolu belirleyin
-import Box from "../components/common/customBox.tsx"; // Doğru yolu belirleyin
-import { Grid } from "@mui/material";
-import '../css/home.css'
-import BusinessCard from "../components/common/businesses-card.tsx";
-import Footer from "../components/common/footer.tsx";
+import { Grid} from "@mui/material";
+import Footer from "../../components/common/footer.tsx";
+import Carousel from "../../components/home/carousel.tsx";
+import Navbar from "../../components/common/navbar.tsx";
+import PremiumCard from "../../components/home/premiumBox.tsx";
+import BusinessCard from "../../components/common/businesses-card.tsx";
+import CustomBox from "../../components/common/customBox.tsx";
+import "../../css/home.css";
+
 
 function Home() {
     return (
         <div>
             <Navbar />
             <Carousel />
-            <Box />
+            <CustomBox></CustomBox>
+
 
             {/* Premium Cards Section */}
             <Grid container spacing={2} justifyContent="center" padding={2}>
@@ -22,7 +24,7 @@ function Home() {
                     </Grid>
                 ))}
             </Grid>
-            <Box></Box>
+            <CustomBox></CustomBox>
             <BusinessCard
                 businessName="Örnek İşletme"
                 description="Bu, örnek bir işletme açıklamasıdır."
