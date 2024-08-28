@@ -2,12 +2,14 @@ import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
 
 interface BusinessCardProps {
+    businessName: string;
     image: string;
     name: string;
     description: string;
     priceRange: string;
     discount: string;
     link: string;
+    imageUrl: string;
 }
 
 const BusinessCard: React.FC<BusinessCardProps> = ({ image, name, description, priceRange, discount, link }) => {

@@ -1,4 +1,4 @@
-import Navbar from "../components/common/navbar.tsx";
+import Navbar from "../../components/common/navbar.tsx";
 
 function Hotels() {
 
