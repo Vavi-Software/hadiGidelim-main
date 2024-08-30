@@ -31,6 +31,7 @@ import ArtificialTurf from "./pages/sport/artificial-turf.tsx";
 import Gym from "./pages/sport/gym.tsx";
 import Pools from "./pages/sport/pools.tsx";
 import Calisthenics from "./pages/sport/calisthenics.tsx";
+import Mekanlar from "./pages/other/mekanlar.tsx";
 
 function App() {
     return (
@@ -40,6 +41,7 @@ function App() {
                 {/*Ana Sayfa*/}
                 <Route path="/" element={<Home />} />
                 <Route path="/hadi-gezelim" element={<TravelPage/>}/>
+                <Route path="/hadi-gezelim/mekanlar" element={<Mekanlar/>}/>
                 {/*Konaklama*/}
                 <Route path="/Konaklama" element={<Accomodation/>}/>
                 <Route path="/Konaklama/Oteller" element={<Hotels />} />
