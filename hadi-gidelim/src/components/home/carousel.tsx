@@ -4,14 +4,14 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const imageArray = [
-    '../../public/VAVI2.png',
+    '../../public/ankara.png',
     '../../public/logo.png',
+    '../../public/ankara.jpg',
+    '../../public/anıtkabir.jpg',
+    '../../public/ankara.png',
+    '../../public/ankara.jpg',
     '../../public/VAVI2.png',
-    '../../public/VAVI2.png',
-    '../../public/VAVI2.png',
-    '../../public/VAVI2.png',
-    '../../public/VAVI2.png',
-    '../../public/VAVI2.png',
+    '../../public/anıtkabir.jpg',
 ];
 
 const CarouselComponent: React.FC = () => {
