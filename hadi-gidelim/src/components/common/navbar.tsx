@@ -33,7 +33,6 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
             sx={{
                 color: '#ea2d00',
                 fontFamily: 'Arial, sans-serif',
-                borderRadius: "50px", // Set the border radius to create an oval shape
                 fontSize: '10px',
                 fontWeight: 700,
                 backgroundColor: "white",
