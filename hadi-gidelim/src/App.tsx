@@ -30,7 +30,7 @@ function App() {
                 {/*Spor*/}
                 <Route path="/Spor" element={<Sport/>}/>
                 {/*İletişim*/}
-                <Route path="/iletisim" element={<ContactUs/>}/>
+                <Route path="/Iletisim" element={<ContactUs/>}/>
             </Routes>
         </Router>
     );
