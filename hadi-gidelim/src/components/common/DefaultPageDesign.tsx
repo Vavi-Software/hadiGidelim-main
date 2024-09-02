@@ -68,13 +68,13 @@ const PageComponent: React.FC = () => {
                 <Typography variant="h6" gutterBottom>Kategoriler</Typography>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>Elektronik</Typography>
+                        <Typography>Ankara</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <ul>
-                            <li>Bilgisayar</li>
-                            <li>Telefon</li>
-                            <li>Tablet</li>
+                            <li>Hadi</li>
+                            <li>Ankara</li>
+                            <li>Gidek</li>
                         </ul>
                     </AccordionDetails>
                 </Accordion>
