@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box } from "@mui/material";
+import { AppBar, Box, Button, Drawer, IconButton, Toolbar } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import HotelIcon from '@mui/icons-material/Hotel';
@@ -40,7 +41,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 1, // Space between icon and text
+                gap: 1,
                 '&:hover': {
                     backgroundColor: '#cc0000',
                     color: '#fff',
@@ -55,41 +56,88 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
 };
 
 export default function BasicMenu() {
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const toggleDrawer = (open: boolean) => () => {
+        setDrawerOpen(open);
+    };
+
+    const menuItems = [
+        { label: "Ana Sayfa", path: "/", icon: <HomeIcon /> },
+        { label: "Hadi Gezelim", path: "/hadigezelim", icon: <ExploreIcon /> },
+        { label: "Lezzet", path: "/Lezzet", icon: <LocalDiningIcon /> },
+        { label: "Konaklama", path: "/Konaklama", icon: <HotelIcon /> },
+        { label: "Kafe", path: "/Kafe", icon: <CoffeeIcon /> },
+        { label: "Eğlence", path: "/Eglence", icon: <LocalPlayIcon /> },
+        { label: "Hizmet", path: "/Hizmet", icon: <MedicalServicesIcon /> },
+        { label: "Spor", path: "/Spor", icon: <FitnessCenterIcon /> }
+    ];
+
     return (
-        <div>
-            <Box sx={{
-                margin: 0,
-                padding: 0,
-            }}>
-                {/* Header with Left Logo and Right Menu */}
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    sx={{ margin: 0, padding: '0 5rem' }}
-                >
-                    {/* Left Image (Logo) */}
+        <>
+            <AppBar position="static" sx={{ backgroundColor: 'white' }}>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    {/* Left Logo */}
                     <Box>
                         <img src="../../../public/logo.png" alt="logo" width="200px" />
                     </Box>
 
-                    {/* Navbar Links aligned to the right */}
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        sx={{ margin: 3 }}
-                    >
-                        <DashboardMenu label="Ana Sayfa" path="/" icon={<HomeIcon />} />
-                        <DashboardMenu label="Hadi Gezelim" path="/hadigezelim" icon={<ExploreIcon />} />
-                        <DashboardMenu label="Lezzet" path="/Lezzet" icon={<LocalDiningIcon />} />
-                        <DashboardMenu label="Konaklama" path="/Konaklama" icon={<HotelIcon />} />
-                        <DashboardMenu label="Kafe" path="/Kafe" icon={<CoffeeIcon />} />
-                        <DashboardMenu label="Eğlence" path="/Eglence" icon={<LocalPlayIcon />} />
-                        <DashboardMenu label="Hizmet" path="/Hizmet" icon={<MedicalServicesIcon />} />
-                        <DashboardMenu label="Spor" path="/Spor" icon={<FitnessCenterIcon />} />
+                    {/* Hamburger Menu Icon for Mobile */}
+                    <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            onClick={toggleDrawer(true)}
+                        >
+                            <MenuIcon sx={{ color: '#ea2d00' }} />
+                        </IconButton>
                     </Box>
+
+                    {/* Navbar Links for Desktop */}
+                    <Box
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            alignItems: 'center',
+                        }}
+                    >
+                        {menuItems.map((item, index) => (
+                            <DashboardMenu
+                                key={index}
+                                label={item.label}
+                                path={item.path}
+                                icon={item.icon}
+                            />
+                        ))}
+                    </Box>
+                </Toolbar>
+            </AppBar>
+
+            {/* Drawer for Mobile Menu */}
+            <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+            >
+                <Box
+                    sx={{
+                        width: 250,
+                        padding: 2
+                    }}
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                >
+                    {menuItems.map((item, index) => (
+                        <DashboardMenu
+                            key={index}
+                            label={item.label}
+                            path={item.path}
+                            icon={item.icon}
+                        />
+                    ))}
                 </Box>
-            </Box>
-        </div>
+            </Drawer>
+        </>
     );
 }
