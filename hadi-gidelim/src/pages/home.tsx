@@ -1,18 +1,18 @@
 import { Grid} from "@mui/material";
 import Footer from "../components/common/footer.tsx";
-import Carousel from "../components/home/carousel.tsx";
 import Navbar from "../components/common/navbar.tsx";
 import PremiumCard from "../components/home/premiumBox.tsx";
 import BusinessCard from "../components/common/businesses-card.tsx";
 import CustomBox from "../components/common/customBox.tsx";
 import "../css/home.css";
+import CarouselHome from "../components/home/carouselHome.tsx";
 
 
 function Home() {
     return (
         <div>
             <Navbar />
-            <Carousel />
+            <CarouselHome/>
             <CustomBox></CustomBox>
 
 
