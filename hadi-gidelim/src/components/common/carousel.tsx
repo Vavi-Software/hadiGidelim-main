@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, IconButton, TextField } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -14,10 +14,13 @@ const imageArray = [
     '../../public/anıtkabir.jpg',
 ];
 
-const CarouselComponent: React.FC = () => {
+interface CarouselComponentProps {
+    height?: string; // height prop'unu ekleyin
+}
+
+const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Otomatik geçiş için
     React.useEffect(() => {
         const interval = setInterval(() => {
             handleNext();
@@ -40,30 +43,11 @@ const CarouselComponent: React.FC = () => {
         <Box
             position="relative"
             width="100%"
-            height="100vh"
+            height={height} // Burada height prop'unu kullanın
             display="flex"
             justifyContent="center"
             alignItems="center"
         >
-            {/* Arama Bölümü */}
-            <Box
-                position="absolute"
-                top={20}
-                width="80%"
-                display="flex"
-                justifyContent="center"
-                zIndex={10}
-            >
-                <TextField
-                    variant="outlined"
-                    placeholder="Arama yapın..."
-                    fullWidth
-                    sx={{
-                        backgroundColor: 'white',
-                        borderRadius: 2,
-                    }}
-                />
-            </Box>
 
             {/* Geri Butonu */}
             <IconButton
@@ -73,7 +57,8 @@ const CarouselComponent: React.FC = () => {
                     left: 0,
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    color: 'white',
+                    color: 'wheat',
+
                 }}
             >
                 <ArrowBackIosIcon fontSize="large" />
@@ -94,7 +79,7 @@ const CarouselComponent: React.FC = () => {
                     right: 0,
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    color: 'white',
+                    color: 'wheat',
                 }}
             >
                 <ArrowForwardIosIcon fontSize="large" />
