@@ -15,7 +15,7 @@ const imageArray = [
 ];
 
 interface CarouselComponentProps {
-    height?: string; // height prop'unu ekleyin
+    height?: string;
 }
 
 const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' }) => {
@@ -24,7 +24,7 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
     React.useEffect(() => {
         const interval = setInterval(() => {
             handleNext();
-        }, 10000); // 10 saniye
+        }, 10000); // 10 seconds
 
         return () => clearInterval(interval);
     }, [currentIndex]);
@@ -43,12 +43,21 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
         <Box
             position="relative"
             width="100%"
-            height={height} // Burada height prop'unu kullanın
+            height={height}
             display="flex"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                overflow: 'hidden',
+                '@media (max-width: 1024px)': { // For tablets and smaller devices
+                    height: '70vh',
+                },
+                '@media (max-width: 600px)': { // For mobile devices
+                    height: '50vh',
+                },
+            }}
         >
-            {/* Arama Bölümü */}
+            {/* Search Field */}
             <Box
                 position="absolute"
                 top={20}
@@ -56,6 +65,12 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                 display="flex"
                 justifyContent="center"
                 zIndex={10}
+                sx={{
+                    '@media (max-width: 600px)': { // For mobile devices
+                        width: '90%',
+                        top: 10,
+                    },
+                }}
             >
                 <TextField
                     variant="outlined"
@@ -64,11 +79,14 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                     sx={{
                         backgroundColor: 'white',
                         borderRadius: 2,
+                        '@media (max-width: 600px)': { // For mobile devices
+                            fontSize: '0.8rem',
+                        },
                     }}
                 />
             </Box>
 
-            {/* Geri Butonu */}
+            {/* Previous Button */}
             <IconButton
                 onClick={handlePrev}
                 sx={{
@@ -77,19 +95,27 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                     top: '50%',
                     transform: 'translateY(-50%)',
                     color: 'wheat',
+                    backgroundColor: 'white',
+                    '@media (max-width: 600px)': { // For mobile devices
+                        fontSize: 'small',
+                    },
                 }}
             >
                 <ArrowBackIosIcon fontSize="large" />
             </IconButton>
 
-            {/* Resim */}
+            {/* Image */}
             <img
                 src={imageArray[currentIndex]}
                 alt={`Slide ${currentIndex + 1}`}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                }}
             />
 
-            {/* İleri Butonu */}
+            {/* Next Button */}
             <IconButton
                 onClick={handleNext}
                 sx={{
@@ -99,6 +125,9 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                     transform: 'translateY(-50%)',
                     color: 'wheat',
                     backgroundColor: 'white',
+                    '@media (max-width: 600px)': { // For mobile devices
+                        fontSize: 'small',
+                    },
                 }}
             >
                 <ArrowForwardIosIcon fontSize="large" />
