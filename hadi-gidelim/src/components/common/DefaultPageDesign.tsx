@@ -7,7 +7,9 @@ import {
     Typography,
     Accordion,
     AccordionSummary,
-    AccordionDetails
+    AccordionDetails,
+    useMediaQuery,
+    useTheme,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -28,7 +30,7 @@ const CarouselImage: React.FC = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 10000); // 10 saniyede bir değiştir
+        }, 10000); // Change every 10 seconds
 
         return () => clearInterval(interval);
     }, []);
@@ -48,21 +50,27 @@ const CarouselImage: React.FC = () => {
 };
 
 const PageComponent: React.FC = () => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+
     return (
         <Box
             sx={{
-                padding: '5rem 10rem', // Üstten 5rem, sağ ve soldan 10rem boşluk
+                padding: isSmallScreen ? '2rem' : isTablet ? '3rem' : '5rem 10rem',
                 display: 'flex',
+                flexDirection: isSmallScreen ? 'column' : 'row',
                 gap: '2rem',
             }}
         >
             {/* Sol Kategori Bölümü */}
             <Box
                 sx={{
-                    flexBasis: '30%', // Sayfa genişliğinin %30'u
+                    flexBasis: isSmallScreen ? '100%' : '30%',
                     backgroundColor: '#f0f0f0',
                     padding: '1rem',
                     borderRadius: '8px',
+                    marginBottom: isSmallScreen ? '2rem' : 0,
                 }}
             >
                 <Typography variant="h6" gutterBottom>Kategoriler</Typography>
@@ -78,15 +86,14 @@ const PageComponent: React.FC = () => {
                         </ul>
                     </AccordionDetails>
                 </Accordion>
-                {/* Diğer kategoriler de benzer şekilde eklenebilir */}
             </Box>
 
             {/* Sağ Kart Bölümü */}
             <Box
                 sx={{
-                    flexBasis: '70%', // Sayfa genişliğinin %70'i
+                    flexBasis: isSmallScreen ? '100%' : '70%',
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)', // 2 sütunlu grid
+                    gridTemplateColumns: isSmallScreen || isTablet ? '1fr' : 'repeat(2, 1fr)', // Tablet ve mobil modda tek sütun
                     gap: '1rem',
                 }}
             >
@@ -95,14 +102,14 @@ const PageComponent: React.FC = () => {
                         key={index}
                         sx={{
                             display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'stretch', // Kart içindeki elemanların aynı yükseklikte olmasını sağlar
+                            flexDirection: isSmallScreen ? 'column' : 'row',
+                            alignItems: 'stretch',
                             padding: '1rem',
-                            height: '200px', // Kartın sabit yüksekliği
+                            height: 'auto',
                         }}
                     >
                         {/* İçerik Bölümü */}
-                        <CardContent sx={{ flex: '1 1 60%' }}> {/* İçerik %60 alan kaplar */}
+                        <CardContent sx={{ flex: '1 1 60%' }}>
                             <Typography variant="h6" gutterBottom>
                                 Başlık {index + 1}
                             </Typography>
@@ -110,11 +117,12 @@ const PageComponent: React.FC = () => {
                                 Fiyat: {100 + index * 10} TL
                             </Typography>
                             <Box display="flex" justifyContent="space-between" mt="auto">
+                                {/* Düğmelerin Renk Uyumu */}
                                 <Button variant="contained" color="primary">
-                                    Detaylar
+                                    İşletmeGirç
                                 </Button>
-                                <Button variant="outlined" color="secondary">
-                                    Satın Al
+                                <Button variant="contained" color="primary">
+                                    İşletmeGir.
                                 </Button>
                             </Box>
                         </CardContent>
@@ -123,7 +131,8 @@ const PageComponent: React.FC = () => {
                             sx={{
                                 flex: '1 1 40%',
                                 overflow: 'hidden',
-                                borderRadius: '12px 40px'
+                                borderRadius: '12px 40px',
+                                marginTop: isSmallScreen ? '1rem' : 0,
                             }}
                         >
                             <CarouselImage />
