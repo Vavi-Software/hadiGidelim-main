@@ -11,7 +11,7 @@ import CoffeeIcon from '@mui/icons-material/Coffee';
 import LocalPlayIcon from '@mui/icons-material/LocalPlay';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import ContactPhoneIcon from '@mui/icons-material/ContactPhone'; // Icon for Contact
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
 const Footer: React.FC = () => {
     // Function to create a button with consistent styling
@@ -23,10 +23,10 @@ const Footer: React.FC = () => {
             sx={{
                 color: '#ea2d00',
                 fontFamily: 'Arial, sans-serif',
-                fontSize: '10px',
+                fontSize: { xs: '8px', sm: '10px' }, // Responsive font size
                 fontWeight: 700,
                 backgroundColor: "white",
-                padding: '1rem 1rem',
+                padding: '0.5rem 0.5rem',
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
@@ -45,11 +45,11 @@ const Footer: React.FC = () => {
 
     return (
         <Box sx={{
-            backgroundColor: '#252525', // Dark background color
-            padding: '20px 0',
+            backgroundColor: '#252525',
+            padding: { xs: '10px', sm: '20px 0' }, // Responsive padding
             textAlign: 'center',
             borderTop: "1px solid red",
-            color: '#fff' // White text color
+            color: '#fff'
         }}>
             {/* Logo */}
             <Box sx={{ marginBottom: '20px' }}>
@@ -62,6 +62,7 @@ const Footer: React.FC = () => {
                 fontFamily: 'Arial, sans-serif',
                 fontSize: '1rem',
                 display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on small screens
                 justifyContent: 'center',
                 flexWrap: 'wrap',
                 gap: 2,
@@ -79,10 +80,10 @@ const Footer: React.FC = () => {
                     sx={{
                         color: '#ea2d00',
                         fontFamily: 'Arial, sans-serif',
-                        fontSize: '10px',
+                        fontSize: { xs: '8px', sm: '10px' }, // Responsive font size
                         fontWeight: 700,
                         backgroundColor: "white",
-                        padding: '1rem 1rem',
+                        padding: '0.5rem 0.5rem',
                         whiteSpace: 'nowrap',
                         display: 'flex',
                         alignItems: 'center',
@@ -104,38 +105,39 @@ const Footer: React.FC = () => {
                 padding: '0 20px',
                 color: '#ea2d00',
                 fontWeight: 'bold',
+                fontSize: { xs: '12px', sm: '14px' } // Responsive font size
             }}>
-                Sizde İşletmenizi HADİ GİDELİM'e eklemek için <Link href="tel:05462006739" sx={{ color: '#ea2d00', textDecoration: 'none' }}>Bize Ulaşın
-                    <FontAwesomeIcon icon={faPhone} style={{ color: '#fff', marginLeft: 8 }} />
-                </Link>
+                Sizde İşletmenizi HADİ GİDELİM'e eklemek için <Link href="tel:05462006739" sx={{ color: '#ea2d00', textDecoration: 'none', whiteSpace: 'nowrap'}}>Bize Ulaşın
+                <FontAwesomeIcon icon={faPhone} style={{ color: '#fff', marginLeft: 8 }} />
+            </Link>
             </Typography>
 
             {/* Social Media Icons */}
-            <Box sx={{ marginBottom: '20px'  }}>
-
-                <IconButton href="https://instagram.com" target="_blank" sx={{ color: '#fff', '$:hover':{
-                    color: "#ea2d00"
-                    } }}>
+            <Box sx={{
+                marginBottom: '20px',
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 2,
+            }}>
+                <IconButton href="https://instagram.com" target="_blank" sx={{ color: '#fff', '&:hover': { color: "#ea2d00" } }}>
                     <Instagram />
                 </IconButton>
-                <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#fff' }}>
+                <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#fff', '&:hover': { color: "#ea2d00" } }}>
                     <Facebook />
                 </IconButton>
-                <IconButton href="https://twitter.com" target="_blank" sx={{ color: '#fff' }}>
+                <IconButton href="https://twitter.com" target="_blank" sx={{ color: '#fff', '&:hover': { color: "#ea2d00" } }}>
                     <Twitter />
                 </IconButton>
-
-                <IconButton href="https://linkedin.com" target="_blank" sx={{ color: '#fff' }}>
+                <IconButton href="https://linkedin.com" target="_blank" sx={{ color: '#fff', '&:hover': { color: "#ea2d00" } }}>
                     <LinkedIn />
                 </IconButton>
-
             </Box>
 
             {/* Divider Line */}
             <Divider sx={{ margin: '20px 0', backgroundColor: '#555' }} />
 
             {/* Copyright Section */}
-            <Typography variant="body2" sx={{ color: '#fff' }}>
+            <Typography variant="body2" sx={{ color: '#fff', fontSize: { xs: '10px', sm: '12px' } }}>
                 © {new Date().getFullYear()} <a href="https://vavisoftware.com.tr" style={{ color: '#ea2d00' }}>VAVI SOFTWARE</a> Tarafından Yapılmıştır.
             </Typography>
         </Box>
