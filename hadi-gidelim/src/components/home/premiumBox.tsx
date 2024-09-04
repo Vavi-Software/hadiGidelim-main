@@ -4,10 +4,9 @@ import { styled } from '@mui/system';
 
 const CardContainer = styled(Box)({
     position: 'relative',
-    width: '100%', // Full width for its parent
-    maxWidth: '400px', // Maximum width to avoid overflow
-    height: '200px', // Base height
-    margin: '10px auto', // Center the card with auto margin
+    width: '100%',
+    height: '200px', // Adjust as needed
+    margin: '10px',
     overflow: 'hidden',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
@@ -15,13 +14,6 @@ const CardContainer = styled(Box)({
     '&:hover': {
         transform: 'scale(1.05)',
         boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-    },
-    '@media (max-width: 600px)': { // Mobile screens
-        height: '15rem', // Adjust height for mobile
-        maxWidth: '90%', // Make sure it fits within 90% of the viewport width
-    },
-    '@media (min-width: 600px) and (max-width: 960px)': { // Tablet screens
-        height: '180px', // Adjust height for tablet
     },
 });
 
@@ -56,9 +48,6 @@ const PremiumCard: React.FC<{ title: string }> = ({ title }) => {
                     sx={{
                         alignSelf: 'flex-end',
                         marginTop: 'auto',
-                        '@media (max-width: 600px)': { // Button styling for mobile
-                            fontSize: '0.8rem', // Smaller font size on mobile
-                        },
                     }}
                 >
                     Ziyaret Et

@@ -14,23 +14,14 @@ interface BusinessCardProps {
 
 const BusinessCard: React.FC<BusinessCardProps> = ({ image, name, description, priceRange, discount, link }) => {
     return (
-        <Card
-            sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' }, // Stack on small screens, side-by-side on larger screens
-                position: 'relative',
-                width: { xs: '100%', sm: '48%' }, // Full width on mobile, 48% width on larger screens
-                marginBottom: '20px',
-                marginX: { xs: '0', sm: '1%' }, // Add some horizontal margin on larger screens
-            }}
-        >
+        <Card sx={{ display: 'flex', position: 'relative', width: '48%', marginBottom: '20px' }}>
             <CardMedia
                 component="img"
-                sx={{ width: { xs: '100%', sm: '50%' } }} // Full width on mobile, half width on larger screens
+                sx={{ width: '50%' }}
                 image={image}
                 alt={name}
             />
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: { xs: '100%', sm: '50%' } }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography component="div" variant="h5">
                         {name}
@@ -57,7 +48,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ image, name, description, p
                     color: 'white',
                     padding: '5px 10px',
                     fontSize: '14px',
-                    fontWeight: 'bold',
+                    fontWeight: 'bold'
                 }}
             >
                 {discount}
