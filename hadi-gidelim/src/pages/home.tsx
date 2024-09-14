@@ -11,11 +11,9 @@ import CarouselHome from "../components/home/carouselHome.tsx";
 function Home() {
     return (
         <div>
-            <Navbar />
+            <Navbar/>
             <CarouselHome/>
             <CustomBox></CustomBox>
-
-
             {/* Premium Cards Section */}
             <Grid container spacing={2} justifyContent="center" padding={2}>
                 {[...Array(8)].map((_, index) => (
@@ -31,7 +29,7 @@ function Home() {
                 priceRange="₺100 - ₺500"
                 discount="20%"
                 imageUrl="https://via.placeholder.com/300"
-                onButtonClick={() => window.location.href = 'https://www.example.com'}
+                onButtonClick={() => window.location.href = 'https://www.vavisoftware.com.tr'}
             />
             <Footer></Footer>
             {/* Box Component */}

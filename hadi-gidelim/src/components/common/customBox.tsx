@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Stack } from "@mui/material";
-import "../../css/home.css"
+import "../../css/home.css";
 
 function CustomBox() {
     return (
@@ -34,7 +34,7 @@ function CustomBox() {
                     sx={{
                         width: "50%",
                         display: "flex",
-                        justifyContent: "flex-end", // Align the image to the right
+                        justifyContent: "flex-end",
                     }}
                 >
                     <a href="https://vavisoftware.com.tr">
