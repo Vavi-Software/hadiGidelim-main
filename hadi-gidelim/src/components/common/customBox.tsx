@@ -24,7 +24,7 @@ function CustomBox() {
                         textAlign: "left", // Align text to the left
                     }}
                 >
-                    <h1>Some text here</h1>
+                    <h1>Ayın Mekanı</h1>
                     <h4>Mekanın İsmi</h4>
                     <p>Mekanın Açıklmaası konumu buraya gelecek</p>
                 </Box>
@@ -39,12 +39,12 @@ function CustomBox() {
                 >
                     <a href="https://vavisoftware.com.tr">
                     <img
-                        src="../../../public/logo.png"
+                        src="../../../public/anitkabir.jpg"
                         alt="logo"
                         style={{
                             margin: "10rem",
                             maxWidth: "30rem",
-                            maxHeight: "30rem",
+                            maxHeight: "15rem",
 
                     }}
                     /></a>
