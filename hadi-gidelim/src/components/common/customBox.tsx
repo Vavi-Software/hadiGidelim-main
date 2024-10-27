@@ -29,7 +29,6 @@ function CustomBox() {
                     <p>Mekanın Açıklmaası konumu buraya gelecek</p>
                 </Box>
 
-                {/* Image aligned to the right */}
                 <Box
                     sx={{
                         width: "50%",

@@ -39,6 +39,14 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
         );
     };
 
+    const buttonStyles = {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        color: '#ea0e01', // You can customize this color as needed
+        zIndex: 10,
+    };
+
     return (
         <Box
             position="relative"
@@ -72,11 +80,8 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
             <IconButton
                 onClick={handlePrev}
                 sx={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'wheat',
+                    ...buttonStyles,
+                    left: 5, // Adjusted for left positioning
                 }}
             >
                 <ArrowBackIosIcon fontSize="large" />
@@ -86,19 +91,15 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
             <img
                 src={imageArray[currentIndex]}
                 alt={`Slide ${currentIndex + 1}`}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }}
             />
 
             {/* İleri Butonu */}
             <IconButton
                 onClick={handleNext}
                 sx={{
-                    position: 'absolute',
-                    right: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'wheat',
-                    backgroundColor: 'white',
+                    ...buttonStyles,
+                    right: 5, // Adjusted for right positioning
                 }}
             >
                 <ArrowForwardIosIcon fontSize="large" />
