@@ -11,6 +11,7 @@ import CoffeeIcon from '@mui/icons-material/Coffee';
 import LocalPlayIcon from '@mui/icons-material/LocalPlay';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import LoginIcon from '@mui/icons-material/Person';
 import '../../css/navbar.css';
 
 interface DashboardMenuProps {
@@ -57,6 +58,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
 
 export default function BasicMenu() {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleDrawer = (open: boolean) => () => {
         setDrawerOpen(open);
@@ -70,7 +72,7 @@ export default function BasicMenu() {
         { label: "Kafe", path: "/Kafe", icon: <CoffeeIcon /> },
         { label: "Eğlence", path: "/Eglence", icon: <LocalPlayIcon /> },
         { label: "Hizmet", path: "/Hizmet", icon: <MedicalServicesIcon /> },
-        { label: "Spor", path: "/Spor", icon: <FitnessCenterIcon /> }
+        { label: "Spor", path: "/Spor", icon: <FitnessCenterIcon /> },
     ];
 
     return (
@@ -94,11 +96,13 @@ export default function BasicMenu() {
                         </IconButton>
                     </Box>
 
-                    {/* Navbar Links for Desktop */}
+                    {/* Centered Navbar Links */}
                     <Box
                         sx={{
                             display: { xs: 'none', md: 'flex' },
                             alignItems: 'center',
+                            justifyContent: 'center',
+                            flexGrow: 1,
                         }}
                     >
                         {menuItems.map((item, index) => (
@@ -109,6 +113,11 @@ export default function BasicMenu() {
                                 icon={item.icon}
                             />
                         ))}
+                    </Box>
+
+                    {/* Giriş Yap / Kayıt Ol Butonu */}
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} />
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -136,6 +145,7 @@ export default function BasicMenu() {
                             icon={item.icon}
                         />
                     ))}
+                    <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} /> {/* Mobile menüde de butonu ekledik */}
                 </Box>
             </Drawer>
         </>

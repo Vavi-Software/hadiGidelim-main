@@ -13,6 +13,7 @@ const BusinessCard = (props: BusinessCardProps) => {
     const { businessName, description, priceRange, discount, imageUrl, onButtonClick } = props;
 
     return (
+        
         <Card
             sx={{
                 display: 'flex',
@@ -22,6 +23,7 @@ const BusinessCard = (props: BusinessCardProps) => {
                 marginBottom: '20px',
             }}
         >
+
             <CardMedia
                 component="img"
                 sx={{ width: { xs: '100%', sm: '50%' }, height: 'auto' }}

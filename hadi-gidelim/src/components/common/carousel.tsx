@@ -57,7 +57,7 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                     left: 0,
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    color: 'wheat',
+                    color: '#ea0e01',
 
                 }}
             >

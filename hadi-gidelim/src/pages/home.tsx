@@ -23,6 +23,7 @@ function Home() {
                 ))}
             </Grid>
             <CustomBox></CustomBox>
+            <h1>Bu Ay En Çok Ziyaret Edilen İşletmeler</h1>
             <BusinessCard
                 businessName="Örnek İşletme"
                 description="Bu, örnek bir işletme açıklamasıdır."
