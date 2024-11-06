@@ -57,6 +57,7 @@ const AuthForm: React.FC = () => {
 
             <Button
                 variant="contained"
+
                 onClick={handleSubmit}
                 sx={{
                     backgroundColor: redColor,
