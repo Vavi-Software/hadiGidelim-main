@@ -2,7 +2,7 @@ import Navbar from "../components/common/navbar.tsx";
 import Footer from "../components/common/footer.tsx";
 import Carousel from "../components/common/carousel.tsx";
 import {Box, useMediaQuery, useTheme} from "@mui/material";
-import FilterSection from "./filter.tsx";
+import FilterSection from "../components/common/filter.tsx";
 import CardListSection from "../components/common/cardList.tsx";
 
 function Cafe() {

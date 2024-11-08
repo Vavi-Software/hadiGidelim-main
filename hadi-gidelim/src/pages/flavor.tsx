@@ -2,7 +2,7 @@
 import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
 import Carousel from "../components/common/carousel";
-import FilterSection from "./filter";
+import FilterSection from "../components/common/filter.tsx";
 import CardListSection from "../components/common/cardList"; // Güncellenmiş yol
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
