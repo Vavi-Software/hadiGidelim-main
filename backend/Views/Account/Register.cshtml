@@ -1,0 +1,55 @@
+﻿@model Backend.Models.ViewModels.Account.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    Layout = "_Layout";
+}
+
+<section class="vh-100 d-flex justify-content-center align-items-center my-5">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5 pe-0">
+                <img src="~/images/vavilogo.png" class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 border rounded-3 pt-3 p-5">
+                <h2 class="h2">Kayıt Ol</h2>
+                <hr class="mt-0 mb-4"/>
+                <form asp-action="Register" asp-controller="Account" method="post">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Error"]
+                        </div>
+                    }
+
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input asp-for="EmailAddress" class="form-control form-control-lg" placeholder="E-posta adresinizi giriniz"/>
+                        <label asp-for="EmailAddress" class="form-label">E-Posta Adresi</label>
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input asp-for="Password" class="form-control form-control-lg" placeholder="Şifrenizi giriniz"/>
+                        <label asp-for="Password" class="form-label">Şifre</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Confirm Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input asp-for="ConfirmPassword" class="form-control form-control-lg" placeholder="Şifrenizi tekrar giriniz"/>
+                        <label asp-for="ConfirmPassword" class="form-label">Şifreyi Onayla</label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg px-4">Kayıt Ol</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Zaten bir hesabınız var mı? <a asp-controller="Account" asp-action="Login" class="link-danger">Giriş Yap</a></p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
