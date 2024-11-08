@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, IconButton, TextField } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import SearchInput from "../common/searchBox.tsx";
 
 const imageArray = [
     '../../public/ankara.png',
@@ -15,7 +16,7 @@ const imageArray = [
 ];
 
 interface CarouselComponentProps {
-    height?: string; // height prop'unu ekleyin
+    height?: string;
 }
 
 const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' }) => {
@@ -24,7 +25,7 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
     React.useEffect(() => {
         const interval = setInterval(() => {
             handleNext();
-        }, 10000); // 10 saniye
+        }, 10000);
 
         return () => clearInterval(interval);
     }, [currentIndex]);
@@ -43,7 +44,7 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
         position: 'absolute',
         top: '50%',
         transform: 'translateY(-50%)',
-        color: '#ea0e01', // You can customize this color as needed
+        color: '#ea0e01',
         zIndex: 10,
     };
 
@@ -51,37 +52,20 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
         <Box
             position="relative"
             width="100%"
-            height={height} // Burada height prop'unu kullanın
+            height={height}
             display="flex"
             justifyContent="center"
             alignItems="center"
         >
             {/* Arama Bölümü */}
-            <Box
-                position="absolute"
-                top={20}
-                width="80%"
-                display="flex"
-                justifyContent="center"
-                zIndex={10}
-            >
-                <TextField
-                    variant="outlined"
-                    placeholder="Arama yapın..."
-                    fullWidth
-                    sx={{
-                        backgroundColor: 'white',
-                        borderRadius: 2,
-                    }}
-                />
-            </Box>
+            <SearchInput onChange={(e) => console.log("Aranan: ", e.target.value)} />
 
             {/* Geri Butonu */}
             <IconButton
                 onClick={handlePrev}
                 sx={{
                     ...buttonStyles,
-                    left: 5, // Adjusted for left positioning
+                    left: 5,
                 }}
             >
                 <ArrowBackIosIcon fontSize="large" />
@@ -99,7 +83,7 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
                 onClick={handleNext}
                 sx={{
                     ...buttonStyles,
-                    right: 5, // Adjusted for right positioning
+                    right: 5,
                 }}
             >
                 <ArrowForwardIosIcon fontSize="large" />
