@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
 html {
   font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -18,5 +22,71 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 0; /* Footer'ın altındaki boşluğu kaldırmak için */
 }
+
+/* Navbar */
+.navbar {
+  background-color: #ea2d00 !important; /* Navbar arka plan rengi */
+  font-family: Suse, sans-serif;
+
+}
+
+.navbar .navbar-brand {
+  color: white !important; /* Navbar başlığı beyaz */
+}
+
+.navbar .nav-link {
+  color: white !important; /* Navbar bağlantıları beyaz */
+}
+
+.navbar .nav-link:hover {
+  color: #ea2d00 !important; /* Bağlantı üzerine gelindiğinde arka plan rengi */
+  background-color: white !important;
+}
+
+/* Giriş Yap ve Kayıt Ol Butonları */
+.btn {
+  background-color: white !important; /* Buton arka planı beyaz */
+  color: #ea2d00 !important; /* Buton yazı rengi kırmızı */
+  border: 1px solid #ea2d00 !important; /* Kırmızı kenar çizgisi */
+  font-family: Suse, sans-serif;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: #ea2d00 !important; /* Hover, Focus ve Active durumunda kırmızı arka plan */
+  color: white !important; /* Yazı rengi beyaz */
+  border: 1px solid white !important; /* Beyaz kenar çizgisi */
+}
+/*Ana Sayfa yazıları*/
+.lead{
+  font-family: Suse, sans-serif;
+  font-size: 1.5rem;
+}
+.text-body-emphasis{
+
+  font-family: Suse, sans-serif;
+  font-size: 2.5rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #ea2d00 !important; /* Footer arka plan rengi */
+  color: white !important; /* Footer yazı rengi */
+  display: block;
+  margin: 0;
+  
+}
+
+/* Linkler */
+a {
+  color: #ea2d00 !important; /* Genel link rengi */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #d62600 !important; /* Link üzerine gelindiğinde renk */
+}
+

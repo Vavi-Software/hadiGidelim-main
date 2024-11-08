@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using backend.Models;
+using Backend.Models;
 
-namespace backend.Controllers;
+namespace Backend.Controllers;
 
 public class HomeController : Controller
 {
@@ -14,11 +14,6 @@ public class HomeController : Controller
     }
 
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
     {
         return View();
     }
