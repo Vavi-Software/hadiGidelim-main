@@ -1,0 +1,79 @@
+/* src/css/CardComponent.css */
+.card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 8px;
+    overflow: hidden; /* Resimlerin köşelerini yuvarlamak için */
+    position: relative; /* Animasyonlar için */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Kartı büyütme */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Gölge artırma */
+}
+
+.card img {
+    width: 100%; /* Resim genişliği */
+    height: 200px; /* Resim yüksekliği sabit */
+    object-fit: cover; /* Resim boyutunu kaplamak için */
+    transition: opacity 0.5s ease; /* Resim geçişi için */
+}
+
+.button {
+    background-color: #ea0e01; /* Kırmızı arka plan */
+    color: white; /* Beyaz metin */
+    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease; /* Buton geçişleri */
+    padding: 0.5rem 1rem; /* Butonun iç dolgusu */
+    border-radius: 4px; /* Köşeleri yuvarlama */
+    margin: 0.5rem; /* Butonlar arasına boşluk ekliyoruz */
+    border: none; /* Kenarlık kaldırma */
+    cursor: pointer; /* İmleci el şekline çevirme */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    font-weight: bold; /* Kalın metin */
+    font-size: 0.9rem; /* Metin boyutu */
+    position: relative; /* Animasyon için */
+}
+
+.button:hover {
+    background-color: #d00c01; /* Koyu kırmızı arka plan */
+    transform: translateY(-2px); /* Yukarı kaydırma */
+}
+
+.button:active {
+    transform: translateY(0); /* Basıldığında geri döndür */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Daha az gölge */
+}
+
+.button:focus {
+    outline: none; /* Kenarlık kaldırma */
+}
+
+/* Resim geçiş animasyonu için */
+.card img {
+    opacity: 0; /* İlk başta görünmez */
+}
+
+.card img.fade-in {
+    opacity: 1; /* Geçiş sırasında görünür olacak */
+}
+
+.card img.fade-out {
+    opacity: 0; /* Geçiş sırasında görünmeyecek */
+}
+
+/* Resim geçişi için keyframes */
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Ekstra stil ayarları */
+.card-content {
+    padding: 1rem; /* Kart içeriği için padding ekle */
+    background: rgba(255, 255, 255, 0.9); /* Beyaz arka plan */
+    border-radius: 8px; /* Köşeleri yuvarlama */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
