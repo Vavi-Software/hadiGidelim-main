@@ -7,11 +7,15 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 
 export default function FilterDemo() {
-    const [saat, setSaat] = useState<{ name: string; code: string } | null>(null);
-    const [ilce, setIlce] = useState<{ name: string; code: string } | null>(null);
-    const [kategori, setKategori] = useState<{ name: string; code: string } | null>(null);
-    const [odemeYontemi, setOdemeYontemi] = useState<{ name: string; code: string } | null>(null);
+    // State'ler
+    const [filters, setFilters] = useState({
+        saat: null,
+        ilce: null,
+        kategori: null,
+        odemeYontemi: null,
+    });
 
+    // Seçenekler
     const ankaraIlceleri = [
         { name: "Çankaya", code: "CK" },
         { name: "Keçiören", code: "KC" },
@@ -40,12 +44,20 @@ export default function FilterDemo() {
         { name: "Çek", code: "CK" },
     ];
 
+    // Filtreleri güncelleyen fonksiyon
+    const handleFilterChange = (key: string, value: { name: string; code: string } | null) => {
+        setFilters((prevState) => ({
+            ...prevState,
+            [key]: value,
+        }));
+    };
+
     return (
         <Box
             sx={{
                 padding: "2rem",
                 border: "1px solid #e0e0e0",
-                borderRadius: "16px",
+                borderRadius: "8px", // Reduced border-radius
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                 backgroundColor: "#f5f5f5",
                 "&:hover": { boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)" },
@@ -53,36 +65,36 @@ export default function FilterDemo() {
         >
             <Typography
                 variant="h6"
-                sx={{ marginBottom: "1rem", fontWeight: "bold", textAlign: "center" }}
+                sx={{ marginBottom: "2rem", fontWeight: "bold", textAlign: "center", fontSize: "1.2rem" }}
             >
                 Filtreler
             </Typography>
 
             <DropdownInput
                 label="Saat"
-                value={saat}
-                onChange={(e) => setSaat(e.value)}
+                value={filters.saat}
+                onChange={(e) => handleFilterChange("saat", e.value)}
                 options={saatSecenekleri}
             />
 
             <DropdownInput
                 label="İlçe"
-                value={ilce}
-                onChange={(e) => setIlce(e.value)}
+                value={filters.ilce}
+                onChange={(e) => handleFilterChange("ilce", e.value)}
                 options={ankaraIlceleri}
             />
 
             <DropdownInput
                 label="Kategori"
-                value={kategori}
-                onChange={(e) => setKategori(e.value)}
+                value={filters.kategori}
+                onChange={(e) => handleFilterChange("kategori", e.value)}
                 options={kategoriSecenekleri}
             />
 
             <DropdownInput
                 label="Ödeme Yöntemi"
-                value={odemeYontemi}
-                onChange={(e) => setOdemeYontemi(e.value)}
+                value={filters.odemeYontemi}
+                onChange={(e) => handleFilterChange("odemeYontemi", e.value)}
                 options={odemeSecenekleri}
             />
         </Box>
@@ -100,7 +112,12 @@ const DropdownInput: React.FC<DropdownInputProps> = ({ label, value, onChange, o
     <Box sx={{ marginBottom: "1.5rem" }}>
         <Typography
             variant="body1"
-            sx={{ marginBottom: "0.5rem", color: "#3f51b5", fontWeight: 600 }}
+            sx={{
+                marginBottom: "0.5rem",
+                color: "black", // Set label text color to black
+                fontWeight: 600,
+                fontSize: "1.5rem", // Increased font size for labels
+            }}
         >
             {label}
         </Typography>
@@ -118,6 +135,14 @@ const DropdownInput: React.FC<DropdownInputProps> = ({ label, value, onChange, o
                 </div>
             )}
             className="w-full"
+            style={{
+                fontSize: "1rem", // Increased font size of dropdown items
+                borderRadius: "4px", // Reduced border-radius
+                borderColor: "white", // Red border color
+                padding: "1rem",
+                backgroundColor: "#fff", // White background color
+            }}
+
         />
     </Box>
 );
