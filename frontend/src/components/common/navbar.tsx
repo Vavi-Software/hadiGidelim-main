@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Box, Button, Drawer, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Drawer, IconButton, Toolbar, Divider, Stack } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -38,7 +38,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
                 fontSize: '10px',
                 fontWeight: 700,
                 backgroundColor: "white",
-                padding: '1rem 1rem',
+                padding: '1rem',
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
@@ -58,7 +58,6 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ label, path, icon }) => {
 
 export default function BasicMenu() {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const navigate = useNavigate();
 
     const toggleDrawer = (open: boolean) => () => {
         setDrawerOpen(open);
@@ -96,7 +95,7 @@ export default function BasicMenu() {
                         </IconButton>
                     </Box>
 
-                    {/* Centered Navbar Links */}
+                    {/* Centered Navbar Links for Desktop */}
                     <Box
                         sx={{
                             display: { xs: 'none', md: 'flex' },
@@ -115,8 +114,8 @@ export default function BasicMenu() {
                         ))}
                     </Box>
 
-                    {/* Giriş Yap / Kayıt Ol Butonu */}
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {/* Giriş Yap / Kayıt Ol Button for Desktop */}
+                    <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
                         <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} />
                     </Box>
                 </Toolbar>
@@ -131,21 +130,33 @@ export default function BasicMenu() {
                 <Box
                     sx={{
                         width: 250,
-                        padding: 2
+                        padding: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        height: '100%',
                     }}
                     role="presentation"
                     onClick={toggleDrawer(false)}
                     onKeyDown={toggleDrawer(false)}
                 >
-                    {menuItems.map((item, index) => (
-                        <DashboardMenu
-                            key={index}
-                            label={item.label}
-                            path={item.path}
-                            icon={item.icon}
-                        />
-                    ))}
-                    <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} /> {/* Mobile menüde de butonu ekledik */}
+                    {/* Menu Items */}
+                    <Stack spacing={1}>
+                        {menuItems.map((item, index) => (
+                            <DashboardMenu
+                                key={index}
+                                label={item.label}
+                                path={item.path}
+                                icon={item.icon}
+                            />
+                        ))}
+                    </Stack>
+
+                    {/* Divider and Giriş Yap / Kayıt Ol Button at the Bottom */}
+                    <Box>
+                        <Divider sx={{ my: 1 }} />
+                        <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} />
+                    </Box>
                 </Box>
             </Drawer>
         </>
