@@ -1,0 +1,14 @@
+/* Açıldıktan sonra görünen giriş kısmını büyüt */
+.p-dropdown-panel {
+    font-size: 1.5rem; /* Yazı boyutunu büyüt */
+    padding: 1.5rem; /* İç boşlukları artır */
+}
+
+.p-dropdown-item {
+    font-size: 1.2rem; /* Seçeneklerin yazı boyutunu artır */
+}
+
+.p-dropdown-panel .p-dropdown-item:hover {
+    background-color: #e0e0e0; /* Hover durumunda arka plan rengi */
+    font-size: 1.3rem; /* Hover'da yazı boyutunu büyüt */
+}

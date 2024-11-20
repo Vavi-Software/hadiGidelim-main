@@ -1,7 +1,7 @@
 // src/components/common/CardComponent.tsx
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import '../../css/cardComponent.css'; // CSS dosyasını ekle
+import {Box, Button, Card, CardContent, CardMedia, Typography} from "@mui/material";
+import '../../css/cardComponent.css';
 
 interface CardComponentProps {
     images: string[];
@@ -20,6 +20,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
 
         return () => clearInterval(intervalId); // Component unmount olduğunda interval temizliği
     }, [images.length]);
+
 
     return (
         <Card
@@ -51,6 +52,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
                 <Typography variant="h5" color="text.secondary">
                     {price} TL
                 </Typography>
+               
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                     <Button className="button" size="small">
                         Detaylar

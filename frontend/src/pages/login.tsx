@@ -7,14 +7,17 @@ const redColor = '#ea2d00';
 
 const AuthForm: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
+    const [noBorder, setNoBorder] = useState(false);
     const navigate = useNavigate();
 
     const handleToggle = () => {
         setIsLogin(!isLogin);
+        setNoBorder(false); // Ekran değiştiğinde bordere geri dön
     };
 
     const handleSubmit = () => {
         console.log(isLogin ? 'Giriş yapılıyor...' : 'Kayıt olunuyor...');
+        setNoBorder(true); // Input border'larını kaldır
     };
 
     const goToHome = () => {
@@ -31,23 +34,22 @@ const AuthForm: React.FC = () => {
                 height: '100vh',
                 backgroundColor: '#f5f5f5',
                 padding: 2,
-                position: 'relative', // Make sure the logo is positioned within this container
-                animation: 'backgroundAnimation 3s ease-in-out infinite', // Background animation
+                position: 'relative',
+                animation: 'backgroundAnimation 3s ease-in-out infinite',
                 '@keyframes backgroundAnimation': {
                     '0%': { backgroundColor: '#f5f5f5' },
-                    '50%': { backgroundColor: '#e0e0e0' }, // Light gray in the middle
+                    '50%': { backgroundColor: '#e0e0e0' },
                     '100%': { backgroundColor: '#f5f5f5' },
                 },
             }}
         >
-            {/* Logo positioned in the background */}
             <Box
                 sx={{
                     position: 'absolute',
                     top: '10%',
                     left: '10%',
                     opacity: 0.1,
-                    zIndex: -1, // Send the logo behind the form
+                    zIndex: -1,
                 }}
             >
                 <img src="/path/to/logo.png" alt="Logo" width={150} height={150} />
@@ -80,11 +82,16 @@ const AuthForm: React.FC = () => {
                     variant="outlined"
                     fullWidth
                     required
-                    sx={{
-                        borderColor: redColor,
-                        marginBottom: 2,
-                        '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: redColor } },
+                    InputLabelProps={{
+                        sx: { color: noBorder ? 'transparent' : redColor },
                     }}
+                    InputProps={{
+                        sx: {
+                            backgroundColor: '#f7f7f7',
+                            '& fieldset': { borderColor: noBorder ? 'transparent' : redColor },
+                        },
+                    }}
+                    sx={{ marginBottom: 2 }}
                 />
                 <TextField
                     label="Şifre"
@@ -92,35 +99,53 @@ const AuthForm: React.FC = () => {
                     variant="outlined"
                     fullWidth
                     required
-                    sx={{
-                        borderColor: redColor,
-                        marginBottom: 2,
-                        '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: redColor } },
+                    InputLabelProps={{
+                        sx: { color: noBorder ? 'transparent' : redColor },
                     }}
+                    InputProps={{
+                        sx: {
+                            backgroundColor: '#f7f7f7',
+                            '& fieldset': { borderColor: noBorder ? 'transparent' : redColor },
+                        },
+                    }}
+                    sx={{ marginBottom: 2 }}
                 />
-                <TextField
-                    label="Şifre Tekrar"
-                    type="password"
-                    fullWidth
-                    required
-                    sx={{
-                        borderColor: redColor,
-                        marginBottom: 2,
-                        '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: redColor } },
-                    }
-                    }></TextField>
                 {!isLogin && (
-                    <TextField
-                        label="Kullanıcı Adı"
-                        variant="outlined"
-                        fullWidth
-                        required
-                        sx={{
-                            borderColor: redColor,
-                            marginBottom: 2,
-                            '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: redColor } },
-                        }}
-                    />
+                    <>
+                        <TextField
+                            label="Şifre Tekrar"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            InputLabelProps={{
+                                sx: { color: noBorder ? 'transparent' : redColor },
+                            }}
+                            InputProps={{
+                                sx: {
+                                    backgroundColor: '#f7f7f7',
+                                    '& fieldset': { borderColor: noBorder ? 'transparent' : redColor },
+                                },
+                            }}
+                            sx={{ marginBottom: 2 }}
+                        />
+                        <TextField
+                            label="Kullanıcı Adı"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            InputLabelProps={{
+                                sx: { color: noBorder ? 'transparent' : redColor },
+                            }}
+                            InputProps={{
+                                sx: {
+                                    backgroundColor: '#f7f7f7',
+                                    '& fieldset': { borderColor: noBorder ? 'transparent' : redColor },
+                                },
+                            }}
+                            sx={{ marginBottom: 2 }}
+                        />
+                    </>
                 )}
 
                 <Button
@@ -155,6 +180,7 @@ const AuthForm: React.FC = () => {
                 </Button>
             </Box>
 
+            {/* Ana Sayfa ve İşletme Kayıt Butonları */}
             <Button
                 onClick={goToHome}
                 sx={{
@@ -168,15 +194,18 @@ const AuthForm: React.FC = () => {
             >
                 Ana Sayfaya Dön
             </Button>
-            <Button onClick={goToHome} sx={{
-                position: 'absolute',
-                top: 20,
-                left: 20,
-                color: redColor,
-                fontWeight: 'bold',
-                animation: 'fadeIn 1s ease-in-out' }}>
+            <Button
+                onClick={goToHome}
+                sx={{
+                    position: 'absolute',
+                    top: 20,
+                    left: 20,
+                    color: redColor,
+                    fontWeight: 'bold',
+                    animation: 'fadeIn 1s ease-in-out',
+                }}
+            >
                 İşletme Kayıt
-
             </Button>
         </Box>
     );
