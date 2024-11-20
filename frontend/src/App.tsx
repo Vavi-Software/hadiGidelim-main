@@ -8,7 +8,9 @@ import Cafe from "./pages/cafe.tsx";
 import Entertainment from "./pages/entertainment.tsx";
 import Service from "./pages/service.tsx";
 import Sport from "./pages/sport.tsx";
-import Login from "./pages/login.tsx"
+import Login from "./pages/login.tsx";
+import BusinessRegister from "./pages/business-registration.tsx";
+
 function App() {
     return (
         <Router>
@@ -34,6 +36,8 @@ function App() {
                 {/*Login ekranı*/}
               
                 <Route path="/login" element={<Login></Login>}/>
+                {/* İşletme Kayıt Ekranı */}
+                <Route path="/isletmekayit" element={<BusinessRegister/>}/>
             </Routes>
         </Router>
     );

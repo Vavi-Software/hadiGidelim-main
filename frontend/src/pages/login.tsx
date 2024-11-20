@@ -24,6 +24,9 @@ const AuthForm: React.FC = () => {
         navigate('/');
     };
 
+    const goToBusinessRegister = () =>{
+        navigate('/isletmekayit');
+    }
     return (
         <Box
             sx={{
@@ -195,7 +198,7 @@ const AuthForm: React.FC = () => {
                 Ana Sayfaya Dön
             </Button>
             <Button
-                onClick={goToHome}
+                onClick={goToBusinessRegister}
                 sx={{
                     position: 'absolute',
                     top: 20,
