@@ -73,7 +73,7 @@ const BusinessForm: React.FC = () => {
             return;
         }
 
-        const mailtoLink = `mailto:karadenizebru55@gmail.com?subject=Yeni İşletme Başvurusu&body=İşletme Türü: ${businessType}%0Aİşletme Adı: ${business}%0AAdres: ${address}%0Aİlçe: ${district}%0ASemt: ${neighborhood}%0ATelefon: ${phone}%0AWeb Sitesi: ${website}`;
+        const mailtoLink = `mailto:vavisoftware@gmail.com?subject=Yeni İşletme Başvurusu&body=İşletme Türü: ${businessType}%0Aİşletme Adı: ${business}%0AAdres: ${address}%0Aİlçe: ${district}%0ASemt: ${neighborhood}%0ATelefon: ${phone}%0AWeb Sitesi: ${website}`;
         window.location.href = mailtoLink;
 
         setIsSubmitted(true);
