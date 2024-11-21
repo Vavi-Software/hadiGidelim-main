@@ -1,6 +1,30 @@
 import React, { useState } from 'react';
-import { TextField, MenuItem, Select, InputLabel, FormControl, Button, Box, Stack, SelectChangeEvent, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import {
+    TextField,
+    MenuItem,
+    Select,
+    InputLabel,
+    FormControl,
+    Button,
+    Box,
+    Stack,
+    Typography,
+    SelectChangeEvent,
+    Link,
+} from '@mui/material';
+
+const districtData: Record<string, string[]> = {
+    Çankaya: ['Kızılay', 'Bahçelievler', 'Dikmen', 'Oran', 'Ayrancı', 'Bilkent', 'Ümitköy', 'Beytepe', 'Maltepe'],
+    Keçiören: ['Etlik', 'Gazino', 'Ayvalı', 'Kuşcağız'],
+    Yenimahalle: ['Batıkent', 'Demetevler', 'İvedik', 'Ostim', 'Şentepe'],
+    Altındağ: ['Ulus', 'Hacettepe', 'Hamamönü', 'Siteler'],
+    Mamak: ['Ege Mahallesi', 'Akdere', 'Saimekadın', 'Gülveren'],
+    Etimesgut: ['Eryaman', 'Elvankent', 'Bağlıca', 'Göksu'],
+    Sincan: ['Yenikent', 'Fatih', 'Törekent'],
+    Pursaklar: ['Saray', 'Altınova', 'Karacaören'],
+    Gölbaşı: ['İncek', 'Tulumtaş', 'Karşıyaka'],
+    Polatlı: ['Şentepe', 'Sakarya', 'Cumhuriyet'],
+};
 
 const BusinessForm: React.FC = () => {
     const [businessType, setBusinessType] = useState('');
@@ -9,9 +33,9 @@ const BusinessForm: React.FC = () => {
     const [address, setAddress] = useState('');
     const [district, setDistrict] = useState('');
     const [neighborhood, setNeighborhood] = useState('');
+    const [phone, setPhone] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isWebsiteValid, setIsWebsiteValid] = useState(true);
-    const navigate = useNavigate();
 
     const handleBusinessTypeChange = (event: SelectChangeEvent<string>) => {
         setBusinessType(event.target.value);
@@ -32,10 +56,15 @@ const BusinessForm: React.FC = () => {
 
     const handleDistrictChange = (event: SelectChangeEvent<string>) => {
         setDistrict(event.target.value);
+        setNeighborhood('');
     };
 
     const handleNeighborhoodChange = (event: SelectChangeEvent<string>) => {
         setNeighborhood(event.target.value);
+    };
+
+    const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPhone(event.target.value);
     };
 
     const handleSubmit = () => {
@@ -44,7 +73,7 @@ const BusinessForm: React.FC = () => {
             return;
         }
 
-        const mailtoLink = `mailto:vavisoftware@gmail.com?subject=Yeni İşletme Başvurusu&body=İşletme Türü: ${businessType}%0Aİşletme Adı: ${business}%0AAdres: ${address}%0ASemt: ${district}%0Aİlçe: ${neighborhood}%0AWeb Sitesi: ${website}`;
+        const mailtoLink = `mailto:karadenizebru55@gmail.com?subject=Yeni İşletme Başvurusu&body=İşletme Türü: ${businessType}%0Aİşletme Adı: ${business}%0AAdres: ${address}%0Aİlçe: ${district}%0ASemt: ${neighborhood}%0ATelefon: ${phone}%0AWeb Sitesi: ${website}`;
         window.location.href = mailtoLink;
 
         setIsSubmitted(true);
@@ -53,49 +82,51 @@ const BusinessForm: React.FC = () => {
         setAddress('');
         setDistrict('');
         setNeighborhood('');
-    };
-
-    const goToHomePage = () => {
-        navigate('/');
+        setPhone('');
     };
 
     return (
-        <Box sx={{ padding: '2rem', width: '100%', maxWidth: 600, margin: 'auto', position: 'relative', minHeight: '100vh' }}>
-            {/* Logo Sol Üstte */}
-            <Box sx={{ position: 'absolute', top: 20, left: 20 }}>
-                <img src="../../public/logo.png" alt="Logo" style={{ height: '40px' }} />
-            </Box>
+        <Box sx={{ padding: '2rem', width: '100%', maxWidth: 600, margin: 'auto', position: 'relative' }}>
+            <Stack spacing={3}>
+                {/* Logo */}
+                <Box sx={{ textAlign: 'center', marginBottom: '1rem' }}
+                >
+                    <img src="../../public/logo.png" alt="Logo" style={{ height: '50px' }} />
+                </Box>
 
-            {/* Ana Sayfaya Dön Butonu Sağ Üstte */}
-            <Box sx={{ position: 'absolute', top: 20, right: 20 }}>
-                <Button variant="outlined" onClick={goToHomePage}>
-                    Ana Sayfaya Dön
-                </Button>
-            </Box>
+                {/* Ana Sayfa Linki */}
+                <Box sx={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <Link href="/" underline="none" sx={{ 
+                        fontSize: '1.2rem', 
+                        fontFamily: 'Arial',
+                        fontWeight: 'bold', 
+                        color: '#ea2d00',
+                        border: '1px solid #ea2d00',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '5px',
+                        ":hover": {
+                            backgroundColor: '#ea2d00',
+                            color: 'white',
+                        }
+                        }}>
+                        Ana Sayfa
+                    </Link>
+                </Box>
 
-            <Stack spacing={3}
-            sx={{
-                marginTop: 10,
-                display: 'flex',
-               
-            }}
-            >
+                {/* İşletme Türü */}
                 <FormControl fullWidth>
                     <InputLabel>İşletme Türü</InputLabel>
-                    <Select
-                        value={businessType}
-                        onChange={handleBusinessTypeChange}
-                        label="İşletme Türü"
-                    >
-                        <MenuItem value="restaurant">Lezzet</MenuItem>
-                        <MenuItem value="cafe">Kafe</MenuItem>
-                        <MenuItem value="hotel">Konaklama</MenuItem>
-                        <MenuItem value="store">Hizmet</MenuItem>
-                        <MenuItem value="store">Eğlence</MenuItem>
-                        <MenuItem value="store">Spor</MenuItem>
+                    <Select value={businessType} onChange={handleBusinessTypeChange} label="İşletme Türü">
+                        <MenuItem value="Lezzet">Lezzet</MenuItem>
+                        <MenuItem value="Kafe">Kafe</MenuItem>
+                        <MenuItem value="Konaklama">Konaklama</MenuItem>
+                        <MenuItem value="Hizmet">Hizmet</MenuItem>
+                        <MenuItem value="Eglence">Eğlence</MenuItem>
+                        <MenuItem value="Spor">Spor</MenuItem>
                     </Select>
                 </FormControl>
 
+                {/* Web Sitesi */}
                 {businessType && (
                     <TextField
                         label="Web Sitesi Linki(Web Sitesi Yok İse Bize Ulaşın)"
@@ -107,44 +138,55 @@ const BusinessForm: React.FC = () => {
                     />
                 )}
 
-                {!website && businessType && !isWebsiteValid && (
-                    <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
-                        Bize Ulaşın
-                    </Button>
-                )}
-
+                {/* İlçe ve Semt */}
                 <Stack direction="row" spacing={2}>
                     <FormControl fullWidth>
-                        <InputLabel>Semt</InputLabel>
-                        <Select
-                            value={district}
-                            onChange={handleDistrictChange}
-                            label="Semt"
-                        >
-                            <MenuItem value="district1">Semt 1</MenuItem>
-                            <MenuItem value="district2">Semt 2</MenuItem>
+                        <InputLabel>İlçe</InputLabel>
+                        <Select value={district} onChange={handleDistrictChange} label="İlçe">
+                            {Object.keys(districtData).map((districtName) => (
+                                <MenuItem key={districtName} value={districtName}>
+                                    {districtName}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
 
                     <FormControl fullWidth>
-                        <InputLabel>İlçe</InputLabel>
+                        <InputLabel>Semt</InputLabel>
                         <Select
                             value={neighborhood}
                             onChange={handleNeighborhoodChange}
-                            label="İlçe"
+                            label="Semt"
+                            disabled={!district}
                         >
-                            <MenuItem value="neighborhood1">İlçe 1</MenuItem>
-                            <MenuItem value="neighborhood2">İlçe 2</MenuItem>
+                            {(districtData[district] || []).map((neighborhoodName) => (
+                                <MenuItem key={neighborhoodName} value={neighborhoodName}>
+                                    {neighborhoodName}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </Stack>
 
+                {/* Telefon Numarası */}
+                <TextField
+                    label="Telefon Numarası"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    fullWidth
+                    type="tel"
+                    placeholder="Örnek: 0532 123 4567"
+                />
+
+                {/* İşletme Adı */}
                 <TextField
                     label="Lütfen İşletme Adınızı Giriniz"
                     value={business}
                     onChange={handleBusinessChange}
                     fullWidth
                 />
+
+                {/* Açık Adres */}
                 <TextField
                     label="İşletmenizin Açık Adresini Giriniz"
                     value={address}
@@ -152,16 +194,16 @@ const BusinessForm: React.FC = () => {
                     fullWidth
                 />
 
-                <Button 
-                    variant="contained" 
+                {/* Kaydet Butonu */}
+                <Button
+                    variant="contained"
                     sx={{
-                        marginTop: 2, 
                         backgroundColor: '#ea2d00',
                         color: 'white',
                         fontWeight: 'bold',
                         padding: 1.5,
                         width: '100%',
-                    }} 
+                    }}
                     onClick={handleSubmit}
                 >
                     Kaydet
@@ -174,13 +216,17 @@ const BusinessForm: React.FC = () => {
                 )}
             </Stack>
 
-            {/* Copyright Mesajı Alt Kısımda */}
-            <Box sx={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', textAlign: 'center', width: '100%' }}>
-                <hr />
-                <Typography variant="body2" color="textSecondary">
-                    &copy; VAVISOFTWARE 2024
-                </Typography>
-            </Box>
+            {/* Alt Yazı */}
+            <Typography
+                variant="body2"
+                sx={{
+                    textAlign: 'center',
+                    marginTop: '2rem',
+                    fontWeight: 'bold',
+                }}
+            >
+                © 2024 VAVI Software
+            </Typography>
         </Box>
     );
 };
