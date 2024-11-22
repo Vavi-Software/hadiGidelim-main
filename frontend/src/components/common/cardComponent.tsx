@@ -60,6 +60,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
                     <Button className="button" size="small">
                         Sepete Ekle
                     </Button>
+                    
                 </Box>
             </CardContent>
         </Card>

@@ -38,7 +38,7 @@ function Accommodation() {
                         </Box>
                     )}
 
-                    <Box sx={{ flexBasis: "70%" }}>
+                    <Box sx={{ flexBasis: "100%" }}>
                         <CardListSection /> {/* Kart bölümünü buradan çağırıyoruz */}
                     </Box>
                 </Box>

@@ -15,11 +15,10 @@ function PremiumCard() {
             sx={{
                 position: 'relative',
                 margin: 2,
-                width: 350,
+                padding: 20,
+                width: '80%',
                 height: 300,
-                backgroundImage: 'url("/placeholder-350x300.png")', // Örnek resim boyutu
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundImage: 'url("/placeholder-350x300.png")',        
                 borderRadius: 2,
                 overflow: 'hidden',
                 boxShadow: 4,
