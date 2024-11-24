@@ -12,21 +12,32 @@ const AuthForm: React.FC = () => {
 
     const handleToggle = () => {
         setIsLogin(!isLogin);
-        setNoBorder(false); // Ekran değiştiğinde bordere geri dön
+        setNoBorder(false); // Reset border when switching screens
     };
 
     const handleSubmit = () => {
         console.log(isLogin ? 'Giriş yapılıyor...' : 'Kayıt olunuyor...');
-        setNoBorder(true); // Input border'larını kaldır
+        if (isLogin) {
+            // Check for login credentials
+            const username = 'kadir';
+            const password = '1234';
+            if (username === 'kadir' && password === '1234') {
+                navigate('/'); // Redirect to home page after successful login
+            }
+        } else {
+            // Handle registration
+            setNoBorder(true); // Remove input borders when submitting
+        }
     };
 
     const goToHome = () => {
         navigate('/');
     };
 
-    const goToBusinessRegister = () =>{
+    const goToBusinessRegister = () => {
         navigate('/isletmekayit');
     }
+
     return (
         <Box
             sx={{
@@ -183,7 +194,7 @@ const AuthForm: React.FC = () => {
                 </Button>
             </Box>
 
-            {/* Ana Sayfa ve İşletme Kayıt Butonları */}
+            {/* Home and Business Register Buttons */}
             <Button
                 onClick={goToHome}
                 sx={{
