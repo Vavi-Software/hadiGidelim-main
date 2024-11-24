@@ -8,14 +8,7 @@ import PremiumBox from "../components/home/premiumBox.tsx";
 import CardListSection from "../components/common/cardList.tsx";
 
 function Home() {
-    const businessData = Array.from({ length: 8 }).map((_, index) => ({
-        businessName: `Örnek İşletme ${index + 1}`,
-        description: "Bu, örnek bir işletme açıklamasıdır.",
-        priceRange: "₺100 - ₺500",
-        discount: `${20 + index}%`,
-        imageUrl: "https://via.placeholder.com/300",
-        onButtonClick: () => window.location.href = 'https://www.vavisoftware.com.tr',
-    }));
+   
 
     return (
         <div>
@@ -45,7 +38,10 @@ function Home() {
                 Bu Ay En Çok Ziyaret Edilen İşletmeler
             </Typography>
          
-            <Box sx={{ flexBasis: "70%" }}>
+            <Box sx={{ 
+                flexBasis: "70%",
+                margin: 4,
+                }}>
                         <CardListSection /> {/* Kart bölümünü buradan çağırıyoruz */}
                     </Box>
             <Footer />

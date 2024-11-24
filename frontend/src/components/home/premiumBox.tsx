@@ -31,7 +31,9 @@ function PremiumCard() {
                     },
                 },
                 '@media (max-width: 600px)': {
-                    margin: 'auto', // Mobilde ortalamak için
+                    marginLeft: "auto", // Mobilde ortalamak için
+                    marginRight: "auto", // Mobilde ortalamak için
+
                 },
             }}
         >
@@ -88,10 +90,28 @@ function PremiumCard() {
                     alignItems: 'center',
                 }}
             >
-                <Button variant="contained" color="primary" size="small">
+                <Button variant="contained" color="primary" size="small"
+                 sx={{
+                    marginRight: '1rem',
+                    backgroundColor: '#ea2d00',
+                    color: 'white',
+                    '&:hover': {
+                        backgroundColor: 'white',
+                        color: '#ea2d00',
+                    },
+                }}>
                     Ziyaret Et
                 </Button>
-                <IconButton onClick={handleLike} color="secondary">
+                <IconButton onClick={handleLike} color="secondary"
+                 sx={{
+                    marginRight: '1rem',
+                    backgroundColor: 'white',
+                    color: '#ea2d00',
+                    '&:hover': {
+                        backgroundColor: '#ea2d00',
+                        color: 'white',
+                    },
+                }}>
                     {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </IconButton>
             </Box>
