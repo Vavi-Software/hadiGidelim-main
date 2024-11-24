@@ -72,7 +72,7 @@ function PremiumCard() {
                 }}
             >
                 <Typography variant="body1">
-                    Mekan hakkında detaylı bilgi buraya eklenebilir.
+                    Favorilere eklemek için tıklayın.
                 </Typography>
             </Box>
 
