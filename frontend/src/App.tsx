@@ -38,6 +38,7 @@ function App() {
                 <Route path="/login" element={<Login></Login>}/>
                 {/* İşletme Kayıt Ekranı */}
                 <Route path="/isletmekayit" element={<BusinessRegister/>}/>
+                {/* İşletme Admin Panel */}
             </Routes>
         </Router>
     );
