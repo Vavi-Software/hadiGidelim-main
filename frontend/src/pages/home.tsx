@@ -47,9 +47,21 @@ function Home() {
             </Typography>
             <Box
                 sx={{
+                    md: {
+                        display: "flex",
+
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                    },
+                  
+                    
+                    
+                    
+
                     flexBasis: "70%",
                     margin: 4,
                 }}
+
             >
             <CardListSection cardsPerRow={4} gap="1.5rem" />
             </Box>

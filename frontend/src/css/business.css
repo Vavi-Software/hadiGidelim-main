@@ -1,0 +1,31 @@
+input, .dropdown {
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+
+label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: #ea2d00;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+label:hover {
+    color: #ff6347;
+}
+
+button {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6347;
+    transform: translateY(-3px);
+}
