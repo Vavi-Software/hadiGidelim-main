@@ -43,7 +43,6 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
     const buttonStyles = {
         position: 'absolute',
         top: '50%',
-        transform: 'translateY(-50%)',
         color: '#ea0e01',
         zIndex: 10,
     };
