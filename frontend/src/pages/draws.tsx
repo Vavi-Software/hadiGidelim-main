@@ -37,7 +37,6 @@ const businesses = [
 function Draws() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Carousel için otomatik kaydırma
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % businesses.length);
