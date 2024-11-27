@@ -11,6 +11,7 @@ import Sport from "./pages/sport.tsx";
 import Login from "./pages/login.tsx";
 import BusinessRegister from "./pages/business-registration.tsx";
 import AddProduct from './pages/add-product.tsx';
+import Draws from "./pages/draws.tsx";
 
 function App() {
     return (
@@ -41,6 +42,8 @@ function App() {
                 <Route path="/isletmekayit" element={<BusinessRegister/>}/>
                 {/* İşletme Admin Panel */}
                 <Route path="/isletmeadmin" element={<AddProduct/>}/>
+                {/* Çekiliş */}
+                <Route path="/cekilis" element={<Draws/>}/>
             </Routes>
         </Router>
     );
