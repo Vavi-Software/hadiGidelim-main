@@ -73,7 +73,10 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
                         }}>
                             Menü
                         </Button>
-                        <Button className="button" size="small"
+                        <Button
+                            className="button"
+                            size="small"
+                            onClick={() => window.open('/cekilis')}
                          sx={{
                             marginRight: '1rem',
                             backgroundColor: '#ea2d00',

@@ -1,58 +1,50 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/common/navbar.tsx';
 import Footer from '../components/common/footer.tsx';
-import { Button, Box, Typography, Stack } from '@mui/material';
-import { Instagram, Share } from '@mui/icons-material';
-import { FacebookShareButton } from 'react-share';
+import { Button, Box, Typography, Grid } from '@mui/material';
+
 import '../css/global.css';
 
 // Örnek işletme verileri
 const businesses = [
     {
         id: 1,
-        name: 'İşletme 1',
-        image: '/business1.jpg',
-        details: 'İşletme 1 detayları burada.',
+        name: 'İşletme A',
+        images: '../../public/logo.png ,logo.jpg',
+        details: 'Çekiliş Detayları.',
     },
     {
         id: 2,
-        name: 'İşletme 2',
-        image: '/business2.jpg',
-        details: 'İşletme 2 detayları burada.',
+        name: 'İşletme C',
+        images: ['/businessC-1.jpg', '/businessC-2.jpg', '/businessC-3.jpg'],
+        details: 'İşletme C detayları burada.',
     },
     {
         id: 3,
-        name: 'İşletme 3',
-        image: '/business3.jpg',
-        details: 'İşletme 3 detayları burada.',
+        name: 'İşletme B',
+        images: ['/businessB-1.jpg', '/businessB-2.jpg', '/businessB-3.jpg'],
+        details: 'İşletme B detayları burada.',
     },
     {
         id: 4,
-        name: 'İşletme 4',
-        image: '/business4.jpg',
-        details: 'İşletme 4 detayları burada.',
+        name: 'İşletme D',
+        images: ['/businessD-1.jpg', '/businessD-2.jpg', '/businessD-3.jpg'],
+        details: 'İşletme D detayları burada.',
     },
 ];
 
 function Draws() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // İşletmeleri alfabetik sıraya göre sıralama
+    const sortedBusinesses = [...businesses].sort((a, b) => a.name.localeCompare(b.name));
+
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % businesses.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % sortedBusinesses.length);
         }, 3000); // 3 saniye
         return () => clearInterval(interval);
-    }, []);
-
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? businesses.length - 1 : prevIndex - 1
-        );
-    };
-
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % businesses.length);
-    };
+    }, [sortedBusinesses]);
 
     const handleJoinDraw = (business: typeof businesses[0]) => {
         alert(`${business.name} işletmesinin çekilişine katıldınız!`);
@@ -62,25 +54,63 @@ function Draws() {
         <>
             <Navbar />
 
-            {/* Çekiliş Yap Butonu */}
-            <Box
-                sx={{
-                    textAlign: 'center',
-                    padding: '16px',
-                    backgroundColor: '#f5f5f5',
-                    borderBottom: '1px solid #ddd',
-                }}
-            >
-                <Typography variant="h6" gutterBottom>
-                    Çekiliş Yap
+            {/* İşletmeler Bölümü */}
+            <Box sx={{ padding: '24px' }}>
+                <Typography variant="h4" textAlign="center" gutterBottom>
+                    İşletmelerin Çekilişleri
                 </Typography>
-                <Button variant="contained" color="primary">
-                    Çekiliş Sayfasına Git
-                </Button>
+                <Grid container spacing={4}>
+                    {sortedBusinesses.map((business) => (
+                        <Grid item xs={12} sm={6} md={3} key={business.id}>
+                            <Box
+                                sx={{
+                                    boxShadow: 3,
+                                    padding: '16px',
+                                    borderRadius: '8px',
+                                    textAlign: 'center',
+                                    backgroundColor: '#fff',
+                                }}
+                            >
+                                <img
+                                    src={business.images[0]}
+                                    alt={business.name}
+                                    style={{
+                                        width: '100%',
+                                        height: '150px',
+                                        objectFit: 'cover',
+                                        borderRadius: '8px',
+                                    }}
+                                />
+                                <Typography variant="h6" mt={2}>
+                                    {business.name}
+                                </Typography>
+                                <Typography variant="body2" mb={2}>
+                                    {business.details}
+                                </Typography>
+                                <Button
+                                    variant="outlined"
+                                    fullWidth
+                                    onClick={() => handleJoinDraw(business)}
+                                >
+                                    Çekilişe Katıl
+                                </Button>
+                            </Box>
+                        </Grid>
+                    ))}
+                </Grid>
             </Box>
 
             {/* Carousel */}
-            <Box sx={{ position: 'relative', margin: '24px', overflow: 'hidden' }}>
+            <Box
+                sx={{
+                    position: 'relative',
+                    margin: '24px',
+                    overflow: 'hidden',
+                    width: 'calc(100% - 48px)',
+                    borderRadius: '8px',
+                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)',
+                }}
+            >
                 <Box
                     sx={{
                         display: 'flex',
@@ -88,95 +118,8 @@ function Draws() {
                         transform: `translateX(-${currentIndex * 100}%)`,
                     }}
                 >
-                    {businesses.map((business) => (
-                        <Box
-                            key={business.id}
-                            sx={{
-                                flex: '0 0 100%',
-                                padding: '8px',
-                                textAlign: 'center',
-                            }}
-                        >
-                            <img
-                                src={business.image}
-                                alt={business.name}
-                                style={{
-                                    width: '100%',
-                                    height: '200px',
-                                    borderRadius: '8px',
-                                }}
-                            />
-                            <Typography variant="h6" mt={1}>
-                                {business.name}
-                            </Typography>
-                            <Typography variant="body2">{business.details}</Typography>
-                            <Button
-                                variant="outlined"
-                                fullWidth
-                                sx={{ marginTop: '8px' }}
-                                onClick={() => handleJoinDraw(business)}
-                            >
-                                Çekilişe Katıl
-                            </Button>
-                        </Box>
-                    ))}
+
                 </Box>
-
-                {/* Önceki ve Sonraki Butonlar */}
-                <Button
-                    onClick={handlePrev}
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '10px',
-                        transform: 'translateY(-50%)',
-                        zIndex: 1,
-                    }}
-                >
-                    ‹
-                </Button>
-                <Button
-                    onClick={handleNext}
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        right: '10px',
-                        transform: 'translateY(-50%)',
-                        zIndex: 1,
-                    }}
-                >
-                    ›
-                </Button>
-            </Box>
-
-            {/* Paylaşım ve +1 Hak */}
-            <Box
-                sx={{
-                    padding: '16px',
-                    backgroundColor: '#f5f5f5',
-                    borderTop: '1px solid #ddd',
-                }}
-            >
-                <Stack direction="column" spacing={2} alignItems="center">
-                    <Typography variant="body1">
-                        Paylaşım ve Instagram takibi +1 hak kazandırır
-                    </Typography>
-                    <Stack direction="row" spacing={2}>
-                        <FacebookShareButton url="https://sizinwebsiteniz.com">
-                            <Button variant="contained" color="primary" startIcon={<Share />}>
-                                Paylaş
-                            </Button>
-                        </FacebookShareButton>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            startIcon={<Instagram />}
-                            onClick={() => window.open('https://instagram.com', '_blank')}
-                        >
-                            Instagram
-                        </Button>
-                    </Stack>
-                </Stack>
             </Box>
 
             <Footer />
