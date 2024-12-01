@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/common/navbar.tsx';
 import Footer from '../components/common/footer.tsx';
-import { Button, Box, Typography, Grid } from '@mui/material';
+import { Button, Box, Typography, Grid, Stack } from '@mui/material';
+import { Instagram } from '@mui/icons-material';
 
 import '../css/global.css';
 
@@ -10,26 +11,22 @@ const businesses = [
     {
         id: 1,
         name: 'İşletme A',
-        images: '../../public/logo.png ,logo.jpg',
-        details: 'Çekiliş Detayları.',
+        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'Çekiliş Detayları.',
     },
     {
         id: 2,
         name: 'İşletme C',
-        images: ['/businessC-1.jpg', '/businessC-2.jpg', '/businessC-3.jpg'],
-        details: 'İşletme C detayları burada.',
+        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'İşletme C detayları burada.',
     },
     {
         id: 3,
         name: 'İşletme B',
-        images: ['/businessB-1.jpg', '/businessB-2.jpg', '/businessB-3.jpg'],
-        details: 'İşletme B detayları burada.',
+        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'İşletme B detayları burada.',
     },
     {
         id: 4,
         name: 'İşletme D',
-        images: ['/businessD-1.jpg', '/businessD-2.jpg', '/businessD-3.jpg'],
-        details: 'İşletme D detayları burada.',
+        images: ['../../public/VAVI2.png', '../../public/ankara.png', '../../public/icon-logo.png'],        details: 'İşletme D detayları burada.',
     },
 ];
 
@@ -48,6 +45,10 @@ function Draws() {
 
     const handleJoinDraw = (business: typeof businesses[0]) => {
         alert(`${business.name} işletmesinin çekilişine katıldınız!`);
+    };
+
+    const handleShare = (business: typeof businesses[0]) => {
+        alert(`${business.name} işletmesini paylaşmak istediniz.`);
     };
 
     return (
@@ -87,13 +88,65 @@ function Draws() {
                                 <Typography variant="body2" mb={2}>
                                     {business.details}
                                 </Typography>
-                                <Button
-                                    variant="outlined"
-                                    fullWidth
-                                    onClick={() => handleJoinDraw(business)}
-                                >
-                                    Çekilişe Katıl
-                                </Button>
+
+                                <Stack spacing={1} mt={2}>
+                                    <Button
+                                        sx={{
+                                            border: '1px solid #ea2d00',
+                                            borderRadius: '8px',
+                                            backgroundColor: '#ea2d00',
+                                            color: '#fff',
+                                            '&:hover': {
+                                                backgroundColor: '#fff',
+                                                color: '#ea2d00',
+                                                border: '1px solid #ea2d00',
+                                            },
+                                        }}
+                                        variant="outlined"
+                                        fullWidth
+                                        onClick={() => handleJoinDraw(business)}
+                                    >
+                                        Çekilişe Katıl
+                                    </Button>
+
+                                    <Button
+                                        sx={{
+                                            border: '1px solid #0077b6',
+                                            borderRadius: '8px',
+                                            backgroundColor: '#0077b6',
+                                            color: '#fff',
+                                            '&:hover': {
+                                                backgroundColor: '#fff',
+                                                color: '#0077b6',
+                                                border: '1px solid #0077b6',
+                                            },
+                                        }}
+                                        variant="outlined"
+                                        fullWidth
+                                        onClick={() => handleShare(business)}
+                                    >
+                                        Paylaş
+                                    </Button>
+
+                                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+                                        <Instagram
+                                            sx={{
+                                                fontSize: '28px',
+                                                color: '#E1306C',
+                                                cursor: 'pointer',
+                                                '&:hover': { color: '#ad1457' },
+                                            }}
+                                        />
+                                        <Instagram
+                                            sx={{
+                                                fontSize: '28px',
+                                                color: '#E1306C',
+                                                cursor: 'pointer',
+                                                '&:hover': { color: '#ad1457' },
+                                            }}
+                                        />
+                                    </Box>
+                                </Stack>
                             </Box>
                         </Grid>
                     ))}
@@ -118,7 +171,19 @@ function Draws() {
                         transform: `translateX(-${currentIndex * 100}%)`,
                     }}
                 >
-
+                    {sortedBusinesses.map((business, index) => (
+                        <img
+                            key={index}
+                            src={business.images[0]}
+                            alt={business.name}
+                            style={{
+                                width: '100%',
+                                height: '200px',
+                                objectFit: 'cover',
+                                flexShrink: 0,
+                            }}
+                        />
+                    ))}
                 </Box>
             </Box>
 
