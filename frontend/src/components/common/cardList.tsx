@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import CardComponent from "./cardComponent.tsx";
 
-// Varsayılan görsel (örneğin, placeholder bir görsel)
+
 const defaultImage = "https://via.placeholder.com/200"; // İstediğiniz görseli buraya koyabilirsiniz.
 
 const CardListSection: React.FC = () => {
@@ -37,7 +37,9 @@ const CardListSection: React.FC = () => {
                         images={card.images}
                         title={card.title}
                         price={card.price}
+
                     />
+
                 ))
             ) : (
                 <div>Veri bulunamadı.</div>
