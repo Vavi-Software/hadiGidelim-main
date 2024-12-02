@@ -1,33 +1,35 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Box, TextField, Button, MenuItem, Typography } from "@mui/material";
 import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const BusinessRegistration: React.FC = () => {
+const BusinessRegistration = () => {
     const [businessType, setBusinessType] = useState("");
     const [businessName, setBusinessName] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
-    const navigate = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!businessType || !businessName || !price || !image) {
             alert("Lütfen tüm alanları doldurun!");
             return;
         }
 
-        // İşletme bilgilerini Local Storage'a kaydediyoruz
-        const existingData = JSON.parse(localStorage.getItem(businessType) || "[]");
-        const newData = [...existingData, { title: businessName, price, images: [image] }];
-        localStorage.setItem(businessType, JSON.stringify(newData));
-
-        console.log("Veri kaydedildi:", newData);  // Kaydedilen veriyi kontrol et
-
-        alert("İşletme başarıyla eklendi!");
-        navigate(`/${businessType}`); // İşletme türüne göre ilgili sayfaya yönlendirme
+        try {
+            const response = await axios.post("http://localhost:5000/api/businesses", {
+                businessType,
+                businessName,
+                price,
+                image,
+            });
+            alert("İşletme başarıyla eklendi!");
+            console.log("API Yanıtı:", response.data);
+        } catch (error) {
+            console.error("Hata:", error);
+            alert("Bir hata oluştu, lütfen tekrar deneyin.");
+        }
     };
-
 
     return (
         <>
@@ -56,7 +58,7 @@ const BusinessRegistration: React.FC = () => {
                     <MenuItem value="Lezzet">Lezzet</MenuItem>
                     <MenuItem value="Konaklama">Konaklama</MenuItem>
                     <MenuItem value="Kafe">Kafe</MenuItem>
-                    <MenuItem value="Eglence">Eğlence</MenuItem>
+                    <MenuItem value="Eğlence">Eğlence</MenuItem>
                     <MenuItem value="Hizmet">Hizmet</MenuItem>
                     <MenuItem value="Spor">Spor</MenuItem>
                 </TextField>
