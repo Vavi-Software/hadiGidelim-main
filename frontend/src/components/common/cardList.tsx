@@ -1,108 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import CardComponent from "./cardComponent.tsx";
 
-interface CardListSectionProps {
-    cardsPerRow?: number; // Sıradaki kart sayısı
-    rows?: number; // Toplam sıra sayısı
-    gap?: string; // Kartlar arasındaki boşluk
-}
+// Varsayılan görsel (örneğin, placeholder bir görsel)
+const defaultImage = "https://via.placeholder.com/200"; // İstediğiniz görseli buraya koyabilirsiniz.
 
-const cardData = [
-    {
-        images: [
-            '../../public/ankara.png',
-            '../../public/logo.png',
-            '../../public/ankara.jpg'
-        ],
-        title: "Ürün 1",
-        price: "100",
-    },
-    {
-        images: [
-            '../../public/anıtkabir.jpg',
-            '../../public/ankara.png',
-            '../../public/ankara.jpg'
-        ],
-        title: "Ürün 2",
-        price: "150",
-    },
-    {
-        images: [
-            '../../public/VAVI2.png',
-            '../../public/anıtkabir.jpg'
-        ],
-        title: "Ürün 3",
-        price: "200",
-    },
-    {
-        images: [
-            '../../public/logo.png',
-            '../../public/VAVI2.png',
-            '../../public/ankara.jpg'
-        ],
-        title: "Ürün 4",
-        price: "250",
-    },
-    {
-        images: [
-            '../../public/ankara.png',
-            '../../public/anıtkabir.jpg',
-            '../../public/VAVI2.png',
-        ],
-        title: "Ürün 5",
-        price: "300",
-    },
-    {
-        images: [
-            '../../public/ankara.jpg',
-            '../../public/ankara.png',
-            '../../public/logo.png',
-        ],
-        title: "Ürün 6",
-        price: "350",
-    },
-    {
-        images: [
-            '../../public/anıtkabir.jpg',
-            '../../public/ankara.jpg',
-            '../../public/VAVI2.png',
-        ],
-        title: "Ürün 7",
-        price: "400",
-    },
-    {
-        images: [
-            '../../public/logo.png',
-            '../../public/ankara.jpg',
-            '../../public/ankara.png',
-        ],
-        title: "Ürün 8",
-        price: "450",
-    },
-];
+const CardListSection: React.FC = () => {
+    const [cardData, setCardData] = useState<any[]>([]);
 
-const CardListSection: React.FC<CardListSectionProps> = ({ cardsPerRow = 4, rows = 2, gap = '2rem' }) => {
-    // Toplam gösterilecek kart sayısını hesaplayın
-    const maxCardsToShow = cardsPerRow * rows;
-    const visibleCards = cardData.slice(0, maxCardsToShow); // Görünen kartları sınırlayın
+    // localStorage'dan veriyi alıp state'e aktaralım
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem("Lezzet") || "[]");
+        console.log("Yüklenen veriler:", storedData);  // Verilerin yüklendiğini kontrol et
+        setCardData(storedData);
+    }, []);  // İlk render'da sadece çalışacak
+
+    // Kart verilerini işlerken fotoğraf yoksa default görsel kullanıyoruz
+    const processCardData = cardData.map((card) => {
+        // Resim yoksa default görseli ekleyelim
+        const images = card.images.length ? card.images : [defaultImage];
+        return { ...card, images };
+    });
 
     return (
         <Box
             sx={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${cardsPerRow}, 1fr)`, // Her satırda belirli sayıda kart
-                gap: gap,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+                gap: "2rem",
             }}
         >
-            {visibleCards.map((card, index) => (
-                <CardComponent
-                    key={index}
-                    images={card.images}
-                    title={card.title}
-                    price={card.price}
-                />
-            ))}
+            {processCardData.length > 0 ? (
+                processCardData.map((card, index) => (
+                    <CardComponent
+                        key={index}
+                        images={card.images}
+                        title={card.title}
+                        price={card.price}
+                    />
+                ))
+            ) : (
+                <div>Veri bulunamadı.</div>
+            )}
         </Box>
     );
 };

@@ -4,6 +4,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import '../../css/cardComponent.css';
 
+// Varsayılan görselin yolunu tanımlayın (bunu bir URL veya yerel dosya yolu olarak değiştirebilirsiniz)
+const defaultImage = 'https://via.placeholder.com/200';
+
 interface CardComponentProps {
     images: string[];
     title: string;
@@ -43,7 +46,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
             <CardMedia
                 component="img"
                 alt={title}
-                image={images[currentImageIndex]}
+                image={images[currentImageIndex] || defaultImage}  // Eğer resim yoksa varsayılan görseli kullan
                 className="fade-in"
                 sx={{
                     height: 200, // Sabit yükseklik
@@ -61,31 +64,30 @@ const CardComponent: React.FC<CardComponentProps> = ({ images, title, price }) =
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
                     <Box>
                         <Button className="button" size="small"
-                        sx={{
-                            marginRight: '1rem',
-                            backgroundColor: '#ea2d00',
-                            color: 'white',
-                            '&:hover': {
-                                backgroundColor: 'white',
-                                color: '#ea2d00',
-                            },
-                          
-                        }}>
+                                sx={{
+                                    marginRight: '1rem',
+                                    backgroundColor: '#ea2d00',
+                                    color: 'white',
+                                    '&:hover': {
+                                        backgroundColor: 'white',
+                                        color: '#ea2d00',
+                                    },
+                                }}>
                             Menü
                         </Button>
                         <Button
                             className="button"
                             size="small"
                             onClick={() => window.open('/cekilis')}
-                         sx={{
-                            marginRight: '1rem',
-                            backgroundColor: '#ea2d00',
-                            color: 'white',
-                            '&:hover': {
-                                backgroundColor: 'white',
-                                color: '#ea2d00',
-                            },
-                        }}>
+                            sx={{
+                                marginRight: '1rem',
+                                backgroundColor: '#ea2d00',
+                                color: 'white',
+                                '&:hover': {
+                                    backgroundColor: 'white',
+                                    color: '#ea2d00',
+                                },
+                            }}>
                             Çekilişe Katıl
                         </Button>
                     </Box>
