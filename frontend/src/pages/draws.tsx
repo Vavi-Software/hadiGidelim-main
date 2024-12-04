@@ -127,25 +127,56 @@ function Draws() {
                                     >
                                         Paylaş
                                     </Button>
+                                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: '24px' }}>
+    {/* İlk Instagram Butonu ve Yazı */}
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Instagram
+            sx={{
+                fontSize: '28px',
+                color: '#E1306C',
+                cursor: 'pointer',
+                '&:hover': { color: '#ad1457' },
+            }}
+            onClick={() => window.open('https://www.instagram.com/vavi.software', '_blank')}
+        />
+        <Typography
+            sx={{
+                cursor: 'pointer',
+                color: '#E1306C',
+                '&:hover': { color: 'black' },
+            }}
+            onClick={() => window.open('https://www.instagram.com/vavi.software', '_blank')}
+        >
+            vavi.software
+        </Typography>
+    </Box>
 
-                                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-                                        <Instagram
-                                            sx={{
-                                                fontSize: '28px',
-                                                color: '#E1306C',
-                                                cursor: 'pointer',
-                                                '&:hover': { color: '#ad1457' },
-                                            }}
-                                        />
-                                        <Instagram
-                                            sx={{
-                                                fontSize: '28px',
-                                                color: '#E1306C',
-                                                cursor: 'pointer',
-                                                '&:hover': { color: '#ad1457' },
-                                            }}
-                                        />
-                                    </Box>
+    {/* İkinci Instagram Butonu ve Yazı */}
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Instagram
+            sx={{
+                fontSize: '28px',
+                color: '#E1306C',
+                cursor: 'pointer',
+                '&:hover': { 
+                    color: '#ad1457',
+                },
+            }}
+            onClick={() => window.open('https://www.instagram.com/hadigidelim1.0', '_blank')}
+        />
+        <Typography
+            sx={{
+                cursor: 'pointer',
+                color: '#E1306C',
+                '&:hover': { color: 'black' },
+            }}
+            onClick={() => window.open('https://www.instagram.com/hadigidelim1.0', '_blank')}
+        >
+            hadigidelim1.0
+        </Typography>
+    </Box>
+</Box>
+
                                 </Stack>
                             </Box>
                         </Grid>
