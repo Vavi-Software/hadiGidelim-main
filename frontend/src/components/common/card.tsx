@@ -9,6 +9,8 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -27,27 +29,24 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
     }),
-    variants: [
-        {
-            props: ({ expand }) => !expand,
-            style: {
-                transform: 'rotate(0deg)',
-            },
-        },
-        {
-            props: ({ expand }) => !!expand,
-            style: {
-                transform: 'rotate(180deg)',
-            },
-        },
-    ],
 }));
 
 export default function RecipeReviewCard() {
     const [expanded, setExpanded] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const menuOpen = Boolean(anchorEl);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+
     };
 
     return (
@@ -59,9 +58,27 @@ export default function RecipeReviewCard() {
                     </Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <>
+                        <IconButton aria-label="settings" onClick={handleMenuClick}>
+                            <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={menuOpen}
+                            onClose={handleMenuClose}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                        >
+                            <MenuItem onClick={handleMenuClose}> Çekilişe Katıl</MenuItem>
+                            <MenuItem onClick={handleMenuClose}>Menü</MenuItem>
+                        </Menu>
+                    </>
                 }
                 title="Shrimp and Chorizo Paella"
                 subheader="September 14, 2016"
@@ -72,9 +89,7 @@ export default function RecipeReviewCard() {
                 image="/ankara.png"
                 alt="Paella dish"
             />
-            <CardContent>
-
-            </CardContent>
+            <CardContent></CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
