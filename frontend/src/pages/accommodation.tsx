@@ -1,9 +1,8 @@
 import Navbar from "../components/common/navbar.tsx";
 import Footer from "../components/common/footer.tsx";
 import Carousel from "../components/common/carousel.tsx";
-import {Box, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Card, useMediaQuery, useTheme} from "@mui/material";
 import FilterSection from "../components/common/filter.tsx";
-import CardListSection from "../components/common/cardList.tsx";
 
 function Accommodation() {
     const theme = useTheme();
@@ -39,7 +38,7 @@ function Accommodation() {
                     )}
 
                     <Box sx={{ flexBasis: "100%" }}>
-                        <CardListSection /> {/* Kart bölümünü buradan çağırıyoruz */}
+                        <Card></Card>
                     </Box>
                 </Box>
             </Box>

@@ -3,7 +3,7 @@ import Footer from "../components/common/footer.tsx";
 import Carousel from "../components/common/carousel.tsx";
 import {Box, useMediaQuery, useTheme} from "@mui/material";
 import FilterSection from "../components/common/filter.tsx";
-import CardListSection from "../components/common/cardList.tsx";
+import Card from "../components/common/card.tsx";
 
 function Entertainment() {
     const theme = useTheme();
@@ -39,7 +39,7 @@ function Entertainment() {
                     )}
 
                     <Box sx={{ flexBasis: "100%" }}>
-                        <CardListSection /> {/* Kart bölümünü buradan çağırıyoruz */}
+                        <Card></Card>
                     </Box>
                 </Box>
             </Box>

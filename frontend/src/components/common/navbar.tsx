@@ -84,7 +84,7 @@ export default function BasicMenu() {
                     </Box>
 
                     {/* Hamburger Menu Icon for Mobile */}
-                    <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                    <Box sx={{ display: { xs: 'block', lg: 'none' } }}> {/* 1300px ve altı için göster */}
                         <IconButton
                             edge="start"
                             color="inherit"
@@ -98,7 +98,7 @@ export default function BasicMenu() {
                     {/* Centered Navbar Links for Desktop */}
                     <Box
                         sx={{
-                            display: { xs: 'none', md: 'flex' },
+                            display: { xs: 'none', lg: 'flex' }, // 1300px'den küçükse gizle
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexGrow: 1,
@@ -115,7 +115,7 @@ export default function BasicMenu() {
                     </Box>
 
                     {/* Giriş Yap / Kayıt Ol Button for Desktop */}
-                    <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+                    <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center' }}>
                         <DashboardMenu label="Giriş Yap / Kayıt Ol" path="/login" icon={<LoginIcon />} />
                     </Box>
                 </Toolbar>

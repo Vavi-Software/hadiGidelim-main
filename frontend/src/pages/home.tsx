@@ -4,9 +4,13 @@ import Navbar from "../components/common/navbar.tsx";
 import CustomBox from "../components/common/customBox.tsx";
 import "../css/home.css";
 import CarouselHome from "../components/home/carouselHome.tsx";
-import CardListSection from "../components/common/cardList.tsx";
+import Card from "../components/common/card.tsx";
 
 function Home() {
+    // 14 Card bileşeni oluşturmak için bir diziyi döngüyle oluşturuyoruz
+    const renderCards = () =>
+        Array.from({ length: 10 }, (_, index) => <Card key={index} />);
+
     return (
         <div>
             <Navbar />
@@ -26,11 +30,14 @@ function Home() {
             </Typography>
             <Box
                 sx={{
-                    flexBasis: "70%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: 2, // Çocuk bileşenler arasında boşluk
                     margin: 4,
                 }}
             >
-            <CardListSection cardsPerRow={4} gap="1.5rem" />
+                {renderCards()}
             </Box>
             <CustomBox />
             <Typography
@@ -47,23 +54,14 @@ function Home() {
             </Typography>
             <Box
                 sx={{
-                    md: {
-                        display: "flex",
-
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                    },
-                  
-                    
-                    
-                    
-
-                    flexBasis: "70%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: 2, // Çocuk bileşenler arasında boşluk
                     margin: 4,
                 }}
-
             >
-            <CardListSection cardsPerRow={4} gap="1.5rem" />
+                {renderCards()}
             </Box>
             <Footer />
         </div>

@@ -3,8 +3,7 @@ import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
 import Carousel from "../components/common/carousel";
 import FilterSection from "../components/common/filter.tsx";
-import CardListSection from "../components/common/cardList"; // Güncellenmiş yol
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import {Box, Card, useMediaQuery, useTheme} from "@mui/material";
 
 function Flavor() {
     const theme = useTheme();
@@ -41,7 +40,7 @@ function Flavor() {
                     )}
 
                     <Box sx={{ flexBasis: "100%" }}>
-                        <CardListSection /> {/* Kart bölümünü buradan çağırıyoruz */}
+                        <Card></Card>
                     </Box>
                 </Box>
             </Box>
