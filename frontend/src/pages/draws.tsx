@@ -11,22 +11,22 @@ const businesses = [
     {
         id: 1,
         name: 'İşletme A',
-        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'Çekiliş Detayları.',
+        images: ['/VAVI2.png', '/VaviLacivert.png', '/icon-logo.png'],        details: 'Çekiliş Detayları.',
     },
     {
         id: 2,
         name: 'İşletme C',
-        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'İşletme C detayları burada.',
+        images: ['/VAVI2.png', '/VaviLacivert.png', '/icon-logo.png'],        details: 'İşletme C detayları burada.',
     },
     {
         id: 3,
         name: 'İşletme B',
-        images: ['../../public/VAVI2.png', '../../public/VaviLacivert.png', '../../public/icon-logo.png'],        details: 'İşletme B detayları burada.',
+        images: ['/VAVI2.png', '/VaviLacivert.png', '/icon-logo.png'],        details: 'İşletme B detayları burada.',
     },
     {
         id: 4,
         name: 'İşletme D',
-        images: ['../../public/VAVI2.png', '../../public/ankara.png', '../../public/icon-logo.png'],        details: 'İşletme D detayları burada.',
+        images: ['/VAVI2.png', '/ankara.png', '/icon-logo.png'],        details: 'İşletme D detayları burada.',
     },
 ];
 

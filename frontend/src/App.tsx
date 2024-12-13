@@ -21,6 +21,7 @@ function App() {
             <Routes>
                 {/*Ana Sayfa*/}
                 <Route path="/" element={<Home />} />
+                {/*Hadi Gezelim*/}
                 <Route path="/hadigezelim" element={<TravelPage/>}/>
                 {/*Konaklama*/}
                 <Route path="/Konaklama" element={<Accommodation/>}/>

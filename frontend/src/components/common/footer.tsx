@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
         }}>
             {/* Logo */}
             <Box sx={{ marginBottom: '20px' }}>
-                <img src="../../public/logo.png" alt="Logo" width="150px" />
+                <img src="/logo.png" alt="Logo" width="150px" />
             </Box>
 
             {/* Quick Links */}

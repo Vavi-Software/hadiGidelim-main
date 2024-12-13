@@ -5,14 +5,14 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SearchInput from "../common/searchBox.tsx";
 
 const imageArray = [
-    '../../public/ankara.png',
-    '../../public/logo.png',
-    '../../public/ankara.jpg',
-    '../../public/anıtkabir.jpg',
-    '../../public/ankara.png',
-    '../../public/ankara.jpg',
-    '../../public/VAVI2.png',
-    '../../public/anıtkabir.jpg',
+    '/ankara.png',
+    '/logo.png',
+    '/ankara.jpg',
+    '/anıtkabir.jpg',
+    '/ankara.png',
+    '/ankara.jpg',
+    '/VAVI2.png',
+    '/anıtkabir.jpg',
 ];
 
 interface CarouselComponentProps {

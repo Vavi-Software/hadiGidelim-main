@@ -51,13 +51,13 @@ const Overlay = styled('div')(() => ({
 }));
 
 export default function RecipeReviewCard() {
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState<string | false>(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [overlayActive, setOverlayActive] = React.useState(false);
     const menuOpen = Boolean(anchorEl);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const handleExpandClick = (collapseKey: string) => {
+        setExpanded(expanded === collapseKey ? false : collapseKey);
         setOverlayActive(!overlayActive);
     };
 
@@ -120,15 +120,15 @@ export default function RecipeReviewCard() {
                         <ShareIcon />
                     </IconButton>
                     <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
+                        expand={expanded === 'panel1'}
+                        onClick={() => handleExpandClick('panel1')}
+                        aria-expanded={expanded === 'panel1'}
                         aria-label="show more"
                     >
                         <ExpandMoreIcon />
                     </ExpandMore>
                 </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <Collapse in={expanded === 'panel1'} timeout="auto" unmountOnExit key="panel1">
                     <CardContent>
                         <Typography sx={{ marginBottom: 2 }}>Method:</Typography>
                         <Typography sx={{ marginBottom: 2 }}>

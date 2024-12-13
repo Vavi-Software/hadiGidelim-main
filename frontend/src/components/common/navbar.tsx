@@ -80,7 +80,7 @@ export default function BasicMenu() {
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     {/* Left Logo */}
                     <Box>
-                        <img src="../../../public/logo.png" alt="logo" width="200px" />
+                        <img src="/logo.png" alt="logo" width="200px" />
                     </Box>
 
                     {/* Hamburger Menu Icon for Mobile */}

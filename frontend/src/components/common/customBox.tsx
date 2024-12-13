@@ -61,7 +61,7 @@ function CustomBox() {
                 >
                     <a href="https://vavisoftware.com.tr">
                         <img
-                            src="../../../public/anitkabir.jpg"
+                            src="/anitkabir.jpg"
                             alt="Mekan Fotoğrafı"
                             style={{
                                 maxWidth: "100%",
