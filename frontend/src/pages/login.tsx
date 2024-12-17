@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { registerUser, loginUser } from '../services/authService'; // authService'i dahil ettik
 
 const redColor = '#ea2d00';
 
@@ -9,44 +9,24 @@ const AuthForm: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [noBorder, setNoBorder] = useState(false);
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({ username: '', email: '', password: '', confirmPassword: '' });
 
-    // Ekran türünü değiştirmek için fonksiyon
     const handleToggle = () => {
         setIsLogin(!isLogin);
-        setNoBorder(false);
+        setNoBorder(false); // Reset border when switching screens
     };
 
-    // Form girdi değerlerini güncellemek için fonksiyon
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    // Giriş veya kayıt işlemini gerçekleştirmek için fonksiyon
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         console.log(isLogin ? 'Giriş yapılıyor...' : 'Kayıt olunuyor...');
         if (isLogin) {
-            try {
-                const response = await loginUser({ username: formData.username, password: formData.password });
-                console.log(response.data);
-                navigate('/'); // Başarılı giriş sonrası ana sayfaya yönlendirme
-            } catch (error) {
-                console.error(error.response ? error.response.data : error.message);
+            // Check for login credentials
+            const username = 'kadir';
+            const password = '1234';
+            if (username === 'kadir' && password === '1234') {
+                navigate('/'); // Redirect to home page after successful login
             }
         } else {
-            if (formData.password !== formData.confirmPassword) {
-                console.error('Şifreler uyuşmuyor');
-                return;
-            }
-
-            try {
-                const response = await registerUser(formData);
-                console.log(response.data);
-                setNoBorder(true); // Başarılı kayıt sonrası input kenar çerçevelerini gizleme
-            } catch (error) {
-                console.error(error.response ? error.response.data : error.message);
-            }
+            // Handle registration
+            setNoBorder(true); // Remove input borders when submitting
         }
     };
 
@@ -116,9 +96,6 @@ const AuthForm: React.FC = () => {
                     variant="outlined"
                     fullWidth
                     required
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     InputLabelProps={{
                         sx: { color: noBorder ? 'transparent' : redColor },
                     }}
@@ -136,9 +113,6 @@ const AuthForm: React.FC = () => {
                     variant="outlined"
                     fullWidth
                     required
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
                     InputLabelProps={{
                         sx: { color: noBorder ? 'transparent' : redColor },
                     }}
@@ -158,9 +132,6 @@ const AuthForm: React.FC = () => {
                             variant="outlined"
                             fullWidth
                             required
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
                             InputLabelProps={{
                                 sx: { color: noBorder ? 'transparent' : redColor },
                             }}
@@ -177,9 +148,6 @@ const AuthForm: React.FC = () => {
                             variant="outlined"
                             fullWidth
                             required
-                            name="username"
-                            value={formData.username}
-                            onChange={handleInputChange}
                             InputLabelProps={{
                                 sx: { color: noBorder ? 'transparent' : redColor },
                             }}
@@ -226,7 +194,7 @@ const AuthForm: React.FC = () => {
                 </Button>
             </Box>
 
-            {/* Ana Sayfa ve İşletme Kayıt Butonları */}
+            {/* Home and Business Register Buttons */}
             <Button
                 onClick={goToHome}
                 sx={{
