@@ -191,7 +191,6 @@ function Draws() {
                     ))}
                 </Box>
             </Box>
-
             <Footer />
         </>
     );

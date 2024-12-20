@@ -11,6 +11,7 @@ function Accommodation() {
     return (
         <div>
             <Navbar></Navbar>
+
             <Carousel height="25vh"/>
             <Box
                 sx={{
@@ -20,7 +21,7 @@ function Accommodation() {
                     gap: "2rem",
                 }}
             >
-                {/* Küçük ekranlarda üstte, büyük ekranlarda solda */}
+
                 {isSmallScreen && <FilterSection />}
 
                 <Box
