@@ -5,6 +5,7 @@ import CustomBox from "../components/common/customBox.tsx";
 import "../css/home.css";
 import CarouselHome from "../components/home/carouselHome.tsx";
 import Card from "../components/common/card.tsx";
+import YoutubeSection from "../components/home/youtube-section.tsx";
 
 function Home() {
     // 14 Card bileşeni oluşturmak için bir diziyi döngüyle oluşturuyoruz
@@ -15,7 +16,7 @@ function Home() {
         <div>
             <Navbar />
             <CarouselHome />
-            <CustomBox />
+            <YoutubeSection />
             <Typography
                 variant="h4"
                 sx={{
@@ -40,29 +41,7 @@ function Home() {
                 {renderCards()}
             </Box>
             <CustomBox />
-            <Typography
-                variant="h4"
-                sx={{
-                    fontFamily: "Arial",
-                    textAlign: "center",
-                    fontWeight: 700,
-                    color: "#ea2d00",
-                    padding: 2,
-                }}
-            >
-                Bu Ay En Çok Ziyaret Edilen İşletmeler
-            </Typography>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                    gap: 2, // Çocuk bileşenler arasında boşluk
-                    margin: 4,
-                }}
-            >
-                {renderCards()}
-            </Box>
+
             <Footer />
         </div>
     );

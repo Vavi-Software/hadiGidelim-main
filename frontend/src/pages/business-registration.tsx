@@ -1,171 +1,93 @@
 import React, { useState } from "react";
-import { CSSProperties } from "react";
-import Footer from "../components/common/footer.tsx";
-import Navbar from "../components/common/navbar.tsx";
-
-type FormData = {
-    businessName: string;
-    website: string;
-    phoneNumber: string;
-    district: string;
-    neighborhood: string;
-};
+import { FormControl, InputLabel, Select, MenuItem, Button, TextField } from "@mui/material";
+import Navbar from "../components/common/navbar";
+import Footer from "../components/common/footer";
 
 const BusinessRegister: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
-        businessName: "",
-        website: "",
-        phoneNumber: "",
-        district: "",
-        neighborhood: "",
-    });
+    const [businessType, setBusinessType] = useState<string>("");
+    const [business, setBusiness] = useState<string>("");
+    const [address, setAddress] = useState<string>("");
+    const [district, setDistrict] = useState<string>("");
+    const [neighborhood, setNeighborhood] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [website, setWebsite] = useState<string>("");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+    const handleBusinessTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setBusinessType(event.target.value as string);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        // Mail gönderme mantığı için backend API'ye ihtiyaç var.
-        // Şimdilik konsola yazalım.
-        console.log("Gönderilen Bilgiler:", formData);
-
-        // Mail backend çağrısı yapılması gerekecek
-        alert("Bilgiler başarıyla gönderildi!");
+    const handleSendMail = () => {
+        const mailtoLink = `mailto:vavisoftware@gmail.com?subject=Yeni İşletme Başvurusu&body=İşletme Türü: ${businessType}%0Aİşletme Adı: ${business}%0AAdres: ${address}%0Aİlçe: ${district}%0ASemt: ${neighborhood}%0ATelefon: ${phone}%0AWeb Sitesi: ${website}`;
+        window.location.href = mailtoLink; // Kullanıcıyı mail istemcisine yönlendir
     };
 
     return (
         <>
-         <Navbar />
-        <div style={styles.container}>
-            <h1 style={styles.title}>İşletme Kayıt</h1>
-            <form onSubmit={handleSubmit} style={styles.form}>
-                <label style={styles.label}>
-                    İşletme Adı:
-                    <input
-                        type="text"
-                        name="businessName"
-                        value={formData.businessName}
-                        onChange={handleChange}
-                        style={styles.input}
-                        required
-                    />
-                </label>
-
-                <label style={styles.label}>
-                    Web Sitesi:
-                    <input
-                        type="text"
-                        name="website"
-                        value={formData.website}
-                        onChange={handleChange}
-                        style={styles.input}
-                        placeholder="Yoksa boş bırakabilirsiniz."
-                    />
-                </label>
-
-                <label style={styles.label}>
-                    Telefon Numarası:
-                    <input
-                        type="tel"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        style={styles.input}
-                        required
-                    />
-                </label>
-
-                <label style={styles.label}>
-                    İlçe:
-                    <select
-                        name="district"
-                        value={formData.district}
-                        onChange={handleChange}
-                        style={styles.select}
-                        required
-                    >
-                        <option value="">Seçiniz</option>
-                        <option value="Çankaya">Çankaya</option>
-                        <option value="Keçiören">Keçiören</option>
-                        <option value="Mamak">Mamak</option>
-                        <option value="Etimesgut">Etimesgut</option>
-                        <option value="Yenimahalle">Yenimahalle</option>
-                    </select>
-                </label>
-
-                <label style={styles.label}>
-                    Semt:
-                    <input
-                        type="text"
-                        name="neighborhood"
-                        value={formData.neighborhood}
-                        onChange={handleChange}
-                        style={styles.input}
-                        required
-                    />
-                </label>
-
-                <button type="submit" style={styles.button}>Bilgileri Gönder</button>
-            </form>
+        <Navbar />
+        <div style={{ maxWidth: "500px", margin: "0 auto", padding: "20px", textAlign: "center" }}>
+            <h1>İşletme Kayıt</h1>
+            <FormControl fullWidth style={{ marginBottom: "15px" }}>
+                <InputLabel>İşletme Türü</InputLabel>
+                <Select value={businessType} onChange={handleBusinessTypeChange} label="İşletme Türü">
+                    <MenuItem value="Lezzet">Lezzet</MenuItem>
+                    <MenuItem value="Kafe">Kafe</MenuItem>
+                    <MenuItem value="Konaklama">Konaklama</MenuItem>
+                    <MenuItem value="Hizmet">Hizmet</MenuItem>
+                    <MenuItem value="Eğlence">Eğlence</MenuItem>
+                    <MenuItem value="Spor">Spor</MenuItem>
+                </Select>
+            </FormControl>
+            <TextField
+                fullWidth
+                label="İşletme Adı"
+                value={business}
+                onChange={(e) => setBusiness(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <TextField
+                fullWidth
+                label="Adres"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <TextField
+                fullWidth
+                label="İlçe"
+                value={district}
+                onChange={(e) => setDistrict(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <TextField
+                fullWidth
+                label="Semt"
+                value={neighborhood}
+                onChange={(e) => setNeighborhood(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <TextField
+                fullWidth
+                label="Telefon"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <TextField
+                fullWidth
+                label="Web Sitesi"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                style={{ marginBottom: "15px" }}
+            />
+            <Button variant="contained" color="primary" onClick={handleSendMail}>
+                Bilgileri Gönder
+            </Button>
         </div>
-            <Footer></Footer>
-        </>
-    );
-};
+        <Footer ></Footer>
 
-const styles: Record<string, CSSProperties> = {
-    container: {
-        maxWidth: "500px",
-        margin: "0 auto",
-        padding: "20px",
-        textAlign: "center",
-        fontFamily: "Arial, sans-serif",
-    },
-    title: {
-        color: "#ea2d00",
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-    },
-    label: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        fontWeight: "bold",
-        color: "#333",
-    },
-    input: {
-        padding: "10px",
-        fontSize: "16px",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        width: "100%",
-    },
-    select: {
-        padding: "10px",
-        fontSize: "16px",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        width: "100%",
-    },
-    button: {
-        backgroundColor: "#ea2d00",
-        color: "#fff",
-        border: "none",
-        padding: "10px 15px",
-        fontSize: "16px",
-        borderRadius: "4px",
-        cursor: "pointer",
-        transition: "background-color 0.3s",
-    },
+        </>
+
+    );
 };
 
 export default BusinessRegister;
