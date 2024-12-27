@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, InputLabel, Select, MenuItem, Button, TextField } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, Button, TextField, Grid, Box } from "@mui/material";
 import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
 
@@ -21,72 +21,148 @@ const BusinessRegister: React.FC = () => {
         window.location.href = mailtoLink; // Kullanıcıyı mail istemcisine yönlendir
     };
 
+    const handleWhatsAppRedirect = () => {
+        window.open("https://wa.me/905462006739", "_blank"); // WhatsApp'a yönlendirme
+    };
+
     return (
         <>
-        <Navbar />
-        <div style={{ maxWidth: "500px", margin: "0 auto", padding: "20px", textAlign: "center" }}>
-            <h1>İşletme Kayıt</h1>
-            <FormControl fullWidth style={{ marginBottom: "15px" }}>
-                <InputLabel>İşletme Türü</InputLabel>
-                <Select value={businessType} onChange={handleBusinessTypeChange} label="İşletme Türü">
-                    <MenuItem value="Lezzet">Lezzet</MenuItem>
-                    <MenuItem value="Kafe">Kafe</MenuItem>
-                    <MenuItem value="Konaklama">Konaklama</MenuItem>
-                    <MenuItem value="Hizmet">Hizmet</MenuItem>
-                    <MenuItem value="Eğlence">Eğlence</MenuItem>
-                    <MenuItem value="Spor">Spor</MenuItem>
-                </Select>
-            </FormControl>
-            <TextField
-                fullWidth
-                label="İşletme Adı"
-                value={business}
-                onChange={(e) => setBusiness(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <TextField
-                fullWidth
-                label="Adres"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <TextField
-                fullWidth
-                label="İlçe"
-                value={district}
-                onChange={(e) => setDistrict(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <TextField
-                fullWidth
-                label="Semt"
-                value={neighborhood}
-                onChange={(e) => setNeighborhood(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <TextField
-                fullWidth
-                label="Telefon"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <TextField
-                fullWidth
-                label="Web Sitesi"
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-                style={{ marginBottom: "15px" }}
-            />
-            <Button variant="contained" color="primary" onClick={handleSendMail}>
-                Bilgileri Gönder
-            </Button>
-        </div>
-        <Footer ></Footer>
+            <Navbar />
+            <Box 
+                sx={{ 
+                    maxWidth: { xs: "100%", sm: "500px" }, 
+                    margin: "0 auto", 
+                    padding: "20px", 
+                    textAlign: "center", 
+                    fontFamily: "Poppins, sans-serif" 
+                }}
+            >
+                <h1 style={{ color: "#ea2d00" }}>İşletme Kayıt</h1>
+                <Grid container spacing={2} justifyContent="center">
+                    <Grid item xs={12}>
+                        <FormControl fullWidth style={{ marginBottom: "15px", borderColor: "#ea2d00" }}>
+                            <InputLabel style={{ color: "black" }}>İşletme Türü</InputLabel>
+                            <Select
+                                value={businessType}
+                                onChange={handleBusinessTypeChange}
+                                label="İşletme Türü"
+                                style={{ borderColor: "#ea2d00", color: "black" }}
+                            >
+                                <MenuItem value="Lezzet">Lezzet</MenuItem>
+                                <MenuItem value="Kafe">Kafe</MenuItem>
+                                <MenuItem value="Konaklama">Konaklama</MenuItem>
+                                <MenuItem value="Hizmet">Hizmet</MenuItem>
+                                <MenuItem value="Eğlence">Eğlence</MenuItem>
+                                <MenuItem value="Spor">Spor</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
 
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="İşletme Adı"
+                            value={business}
+                            onChange={(e) => setBusiness(e.target.value)}
+                            style={{ marginBottom: "15px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "black" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="Adres"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            style={{ marginBottom: "15px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "#000" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            fullWidth
+                            label="İlçe"
+                            value={district}
+                            onChange={(e) => setDistrict(e.target.value)}
+                            style={{ marginBottom: "15px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "#000" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            fullWidth
+                            label="Semt"
+                            value={neighborhood}
+                            onChange={(e) => setNeighborhood(e.target.value)}
+                            style={{ marginBottom: "15px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "#000" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="Telefon"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            style={{ marginBottom: "15px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "#000" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={8}>
+                        <TextField
+                            fullWidth
+                            label="Web Sitesi"
+                            value={website}
+                            onChange={(e) => setWebsite(e.target.value)}
+                            style={{ marginRight: "10px", borderColor: "#ea2d00" }}
+                            InputLabelProps={{ style: { color: "#000" } }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={4}>
+                        <div>
+                            <label
+                                style={{
+                                    display: "block",
+                                    marginBottom: "5px",
+                                    fontSize: "14px",
+                                    color: "#000",
+                                }}
+                            >
+                                Web siteniz yoksa hemen bize ulaşın
+                            </label>
+                            <Button
+                                variant="contained"
+                                style={{
+                                    backgroundColor: "#ea2d00",
+                                    color: "#fff",
+                                    fontSize: "12px",
+                                }}
+                                onClick={handleWhatsAppRedirect}
+                            >
+                                Bize Ulaşın
+                            </Button>
+                        </div>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Button
+                            variant="contained"
+                            style={{ backgroundColor: "#ea2d00", color: "#fff" }}
+                            onClick={handleSendMail}
+                        >
+                            Bilgileri Gönder
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Footer />
         </>
-
     );
 };
 
