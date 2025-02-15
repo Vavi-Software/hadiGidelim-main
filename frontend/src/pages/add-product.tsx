@@ -1,78 +1,141 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/AddProduct.css";
 import Footer from "../components/common/footer.tsx";
-import Navbar from "../components/common/navbar.tsx";
+import RecipeReviewCard from "../components/common/card.tsx";
 
 const AddProduct: React.FC = () => {
+    const [formData, setFormData] = useState({
+        profilePhoto: "",
+        businessName: "",
+        category: "",
+        website: "",
+        district: "",
+        neighborhood: "",
+        productImage: "",
+        description: "",
+    });
+
+    const [showCard, setShowCard] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: reader.result as string,
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setShowCard(true);
+    };
+
     return (
         <>
-            <Navbar/>
             <div className="add-product-container">
-                <h1>Add Product</h1>
+                <h1>Ürün Ekle</h1>
 
-                <form className="add-product-form">
-                    {/* Profile Photo */}
+                <form className="add-product-form" onSubmit={handleSubmit}>
+                    {/* Profil Fotoğrafı */}
                     <div className="form-group">
-                        <label htmlFor="profilePhoto">Profile Photo</label>
-                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" />
+                        <label htmlFor="profilePhoto">Profil Fotoğrafı</label>
+                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" onChange={handleFileChange} />
                     </div>
 
-                    {/* Business Name */}
+                    {/* İşletme Adı */}
                     <div className="form-group">
-                        <label htmlFor="businessName">Business Name</label>
-                        <input type="text" id="businessName" name="businessName" placeholder="Enter business name" />
+                        <label htmlFor="businessName">İşletme Adı</label>
+                        <input type="text" id="businessName" name="businessName" placeholder="İşletme adını girin" onChange={handleChange} />
                     </div>
 
-                    {/* Category */}
+                    {/* Kategori */}
                     <div className="form-group">
-                        <label htmlFor="category">Category</label>
-                        <select id="category" name="category">
-                            <option value="">Select a category</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="food">Food</option>
-                            <option value="health">Health</option>
+                        <label htmlFor="category">Kategori</label>
+                        <select id="category" name="category" onChange={handleChange}>
+                            <option value="">Bir kategori seçin</option>
+                            <option value="electronics">Elektronik</option>
+                            <option value="fashion">Moda</option>
+                            <option value="food">Yiyecek</option>
+                            <option value="health">Sağlık</option>
                         </select>
                     </div>
 
-                    {/* Website Address */}
+                    {/* Website Adresi */}
                     <div className="form-group">
-                        <label htmlFor="website">Website Address</label>
-                        <input type="url" id="website" name="website" placeholder="https://example.com" />
+                        <label htmlFor="website">Website Adresi</label>
+                        <input type="url" id="website" name="website" placeholder="https://ornek.com" onChange={handleChange} />
                     </div>
 
-                    {/* Giveaway Address */}
+                    {/* İlçe */}
                     <div className="form-group">
-                        <label htmlFor="giveawayAddress">Giveaway Address</label>
+                        <label htmlFor="district">İlçe</label>
                         <input
                             type="text"
-                            id="giveawayAddress"
-                            name="giveawayAddress"
-                            placeholder="Enter giveaway address"
+                            id="district"
+                            name="district"
+                            placeholder="İlçe girin"
+                            onChange={handleChange}
                         />
                     </div>
 
-                    {/* Product Image */}
+                    {/* Semt */}
                     <div className="form-group">
-                        <label htmlFor="productImage">Product Image</label>
-                        <input type="file" id="productImage" name="productImage" accept="image/*" />
+                        <label htmlFor="neighborhood">Semt</label>
+                        <input
+                            type="text"
+                            id="neighborhood"
+                            name="neighborhood"
+                            placeholder="Semt girin"
+                            onChange={handleChange}
+                        />
                     </div>
 
-                    {/* Description */}
+                    {/* Ürün Fotoğrafı */}
                     <div className="form-group">
-                        <label htmlFor="description">Description (max 400 characters)</label>
+                        <label htmlFor="productImage">Ürün Fotoğrafı</label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*" onChange={handleFileChange} />
+                    </div>
+
+                    {/* Açıklama */}
+                    <div className="form-group">
+                        <label htmlFor="description">Açıklama (maksimum 400 karakter)</label>
                         <textarea
                             id="description"
                             name="description"
                             maxLength={400}
-                            placeholder="Enter a brief description"
+                            placeholder="Kısa bir açıklama girin"
+                            onChange={handleChange}
                         ></textarea>
                     </div>
 
-                    <button type="submit" className="submit-button">Submit</button>
+                    <button type="submit" className="submit-button">Gönder</button>
                 </form>
+
+                {showCard && (
+                    <RecipeReviewCard
+                        businessName={formData.businessName}
+                        category={formData.category}
+                        description={formData.description}
+                        profilePhoto={formData.profilePhoto}
+                        productImage={formData.productImage}
+                    />
+                )}
             </div>
-            <Footer></Footer>
+            <Footer />
         </>
     );
 };

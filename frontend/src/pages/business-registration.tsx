@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, InputLabel, Select, MenuItem, Button, TextField, Grid, Box } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, Button, TextField, Grid, Box, SelectChangeEvent } from "@mui/material";
 import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
 
@@ -12,7 +12,7 @@ const BusinessRegister: React.FC = () => {
     const [phone, setPhone] = useState<string>("");
     const [website, setWebsite] = useState<string>("");
 
-    const handleBusinessTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const handleBusinessTypeChange = (event: SelectChangeEvent<string>) => {
         setBusinessType(event.target.value as string);
     };
 
