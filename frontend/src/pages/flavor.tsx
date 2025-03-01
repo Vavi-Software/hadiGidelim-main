@@ -3,17 +3,18 @@ import Navbar from "../components/common/navbar";
 import Footer from "../components/common/footer";
 import Carousel from "../components/common/carousel";
 import FilterSection from "../components/common/filter.tsx";
-import {Box, Card, useMediaQuery, useTheme} from "@mui/material";
+import {Box, useMediaQuery, useTheme} from "@mui/material";
+import Card from "../components/common/card.tsx";
 
 function Flavor() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Tablet ve telefon kontrolü
 
     return (
+        
         <div>
             <Navbar />
-            <Carousel height="25vh" />
-
+            <Carousel height="25vh"/>
             <Box
                 sx={{
                     display: "flex",

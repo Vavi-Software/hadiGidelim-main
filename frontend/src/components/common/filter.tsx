@@ -7,7 +7,13 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "../../css/filter.css";
 
-export default function FilterDemo() {
+interface FilterDemoProps {
+    saatSecenekleri: { name: string; code: string }[];
+    kategoriSecenekleri: { name: string; code: string }[];
+    odemeSecenekleri: { name: string; code: string }[];
+}
+
+export default function FilterDemo({ saatSecenekleri, kategoriSecenekleri, odemeSecenekleri }: FilterDemoProps) {
     // State'ler
     const [filters, setFilters] = useState({
         saat: null,
@@ -22,27 +28,6 @@ export default function FilterDemo() {
         { name: "Keçiören", code: "KC" },
         { name: "Yenimahalle", code: "YN" },
         { name: "Sincan", code: "SN" },
-    ];
-
-    const saatSecenekleri = [
-        { name: "Sabah (06:00 - 12:00)", code: "SB" },
-        { name: "Öğlen (12:00 - 18:00)", code: "OG" },
-        { name: "Akşam (18:00 - 24:00)", code: "AK" },
-        { name: "Gece (24:00 - 06:00)", code: "GC" },
-    ];
-
-    const kategoriSecenekleri = [
-        { name: "Restoran", code: "RS" },
-        { name: "Kafe", code: "KF" },
-        { name: "Mağaza", code: "MZ" },
-        { name: "Eğlence", code: "EG" },
-    ];
-
-    const odemeSecenekleri = [
-        { name: "Nakit", code: "NK" },
-        { name: "Kredi Kartı", code: "KK" },
-        { name: "Banka Transferi", code: "BT" },
-        { name: "Çek", code: "CK" },
     ];
 
     // Filtreleri güncelleyen fonksiyon
@@ -143,7 +128,6 @@ const DropdownInput: React.FC<DropdownInputProps> = ({ label, value, onChange, o
                 padding: "1rem",
                 backgroundColor: "#fff", // White background color
             }}
-
         />
     </Box>
 );

@@ -9,18 +9,18 @@ const ContactUs: React.FC = () => {
     const products = [
         {
             id: 1,
-            price: '₺499',
-            details: ['Yüksek Kalite', 'Hızlı Teslimat', '7/24 Destek'],
+            price: '₺1000',
+            details: ['1 Hafta Süreyle Ana sayfada Durma', 'Çekiliş Zorunluluğu Bulunmama', '7/24 Destek'],
         },
         {
             id: 2,
-            price: '₺799',
-            details: ['Profesyonel Hizmet', 'Özel Tasarım', 'Garantili Çözüm'],
+            price: '₺750',
+            details: ['İlgili Sekmenin Üstündeki Galeri Bölümünde Durma', 'İsteğe Bağlı Tasarım tarafımızca yapılır', '7/24 Destek'],
         },
         {
             id: 3,
-            price: '₺999',
-            details: ['VIP Destek', 'Uzun Vadeli Kullanım', 'Kullanıcı Dostu'],
+            price: '₺4000',
+            details: ['1 Hafta Süreyle Ana Sayfada Galeride Bulunma ', 'İsteğe Bağlı Tasarım tarafımızca yapılır', '7/24 Destek'],
         },
     ];
 
@@ -114,6 +114,7 @@ const ContactUs: React.FC = () => {
                                 </CardContent>
                                 <CardActions sx={{ justifyContent: 'center' }}>
                                     <Button
+                                        
                                         variant="outlined"
                                         sx={{
                                             color: 'white',
@@ -125,7 +126,9 @@ const ContactUs: React.FC = () => {
                                             },
                                         }}
                                     >
+                                        
                                         Daha Fazla Bilgi
+                                        
                                     </Button>
                                 </CardActions>
                             </Card>

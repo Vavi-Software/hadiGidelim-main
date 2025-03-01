@@ -11,7 +11,7 @@ function Sport() {
 
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar />
             <Carousel height="25vh"/>
             <Box
                 sx={{
@@ -44,7 +44,7 @@ function Sport() {
                 </Box>
             </Box>
 
-            <Footer></Footer>
+            <Footer />
         </div>
     );
 }

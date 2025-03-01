@@ -48,6 +48,7 @@ const BusinessRegister: React.FC = () => {
                                 label="İşletme Türü"
                                 style={{ borderColor: "#ea2d00", color: "black" }}
                             >
+                                <MenuItem value="Gezilecek Mekan">Gezilecek Mekan</MenuItem>
                                 <MenuItem value="Lezzet">Lezzet</MenuItem>
                                 <MenuItem value="Kafe">Kafe</MenuItem>
                                 <MenuItem value="Konaklama">Konaklama</MenuItem>

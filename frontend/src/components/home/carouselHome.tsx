@@ -56,8 +56,6 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
             justifyContent="center"
             alignItems="center"
         >
-            {/* Arama Bölümü */}
-            <SearchInput onChange={(e) => console.log("Aranan: ", e.target.value)} />
 
             {/* Geri Butonu */}
             <IconButton
