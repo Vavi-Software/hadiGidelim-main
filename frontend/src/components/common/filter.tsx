@@ -8,19 +8,16 @@ import "primeflex/primeflex.css";
 import "../../css/filter.css";
 
 interface FilterDemoProps {
-    saatSecenekleri: { name: string; code: string }[];
-    kategoriSecenekleri: { name: string; code: string }[];
-    odemeSecenekleri: { name: string; code: string }[];
+    filters: {
+        key: string;
+        options: { name: string; code: string }[];
+        label: string;
+    }[];
 }
 
-export default function FilterDemo({ saatSecenekleri, kategoriSecenekleri, odemeSecenekleri }: FilterDemoProps) {
+export default function FilterDemo({ filters }: FilterDemoProps) {
     // State'ler
-    const [filters, setFilters] = useState({
-        saat: null,
-        ilce: null,
-        kategori: null,
-        odemeYontemi: null,
-    });
+    const [filterValues, setFilterValues] = useState<{ [key: string]: { name: string; code: string } | null }>({});
 
     // Seçenekler
     const ankaraIlceleri = [
@@ -32,7 +29,7 @@ export default function FilterDemo({ saatSecenekleri, kategoriSecenekleri, odeme
 
     // Filtreleri güncelleyen fonksiyon
     const handleFilterChange = (key: string, value: { name: string; code: string } | null) => {
-        setFilters((prevState) => ({
+        setFilterValues((prevState) => ({
             ...prevState,
             [key]: value,
         }));
@@ -56,32 +53,21 @@ export default function FilterDemo({ saatSecenekleri, kategoriSecenekleri, odeme
                 Filtreler
             </Typography>
 
-            <DropdownInput
-                label="Saat"
-                value={filters.saat}
-                onChange={(e) => handleFilterChange("saat", e.value)}
-                options={saatSecenekleri}
-            />
+            {filters.map((filter) => (
+                <DropdownInput
+                    key={filter.key}
+                    label={filter.label}
+                    value={filterValues[filter.key] || null}
+                    onChange={(e) => handleFilterChange(filter.key, e.value)}
+                    options={filter.options}
+                />
+            ))}
 
             <DropdownInput
                 label="İlçe"
-                value={filters.ilce}
+                value={filterValues.ilce || null}
                 onChange={(e) => handleFilterChange("ilce", e.value)}
                 options={ankaraIlceleri}
-            />
-
-            <DropdownInput
-                label="Kategori"
-                value={filters.kategori}
-                onChange={(e) => handleFilterChange("kategori", e.value)}
-                options={kategoriSecenekleri}
-            />
-
-            <DropdownInput
-                label="Ödeme Yöntemi"
-                value={filters.odemeYontemi}
-                onChange={(e) => handleFilterChange("odemeYontemi", e.value)}
-                options={odemeSecenekleri}
             />
         </Box>
     );
