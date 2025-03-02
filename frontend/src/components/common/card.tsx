@@ -31,7 +31,21 @@ const ExpandMore = styled(IconButton, {
     }),
 }));
 
-export default function RecipeReviewCard() {
+interface RecipeReviewCardProps {
+    businessName: string;
+    category: string;
+    description: string;
+    profilePhoto: string;
+    productImage: string;
+}
+
+export default function RecipeReviewCard({
+    businessName,
+    category,
+    description,
+    profilePhoto,
+    productImage,
+}: RecipeReviewCardProps) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [expanded, setExpanded] = React.useState(false);
 
@@ -47,17 +61,11 @@ export default function RecipeReviewCard() {
         setExpanded(!expanded);
     };
 
-    const businessName = "İşletmenin adı buraya gelecek";
-    const location = "İşleteme İlçesi/ İşletme Semti";
-    const imageUrl = "https://www.protan.com.tr/wp-content/uploads/2021/12/ankara-web-tasarim-1.jpg";
-    const avatarUrl = "https://www.protan.com.tr/wp-content/uploads/2021/12/ankara-web-tasarim-1.jpg";
-    const description = "Hadi Gidelim A.Ş. olarak, Türkiye'nin en güzel yerlerini sizlere tanıtmak için buradayız. Siz de bu güzelliklere tanıklık etmek istiyorsanız, hemen bize katılın!";
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={avatarUrl}>
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={profilePhoto}>
                         R
                     </Avatar>
                 }
@@ -67,7 +75,7 @@ export default function RecipeReviewCard() {
                     </IconButton>
                 }
                 title={businessName}
-                subheader={location}
+                subheader={category}
             />
             <Menu
                 id="simple-menu"
@@ -82,8 +90,8 @@ export default function RecipeReviewCard() {
             <CardMedia
                 component="img"
                 height="194"
-                image={imageUrl}
-                alt="Paella dish"
+                image={productImage}
+                alt="Product Image"
             />
 
             <CardActions disableSpacing>

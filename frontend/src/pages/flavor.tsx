@@ -38,6 +38,7 @@ const filters = [
     { key: "saat", options: saatSecenekleri, label: labels.saat },
     { key: "kategori", options: kategoriSecenekleri, label: labels.kategori },
     { key: "odemeYontemi", options: odemeSecenekleri, label: labels.odemeYontemi },
+   
     
 ];
 
@@ -75,7 +76,13 @@ function Flavor() {
                     )}
 
                     <Box sx={{ flexBasis: "100%" }}>
-                        <Card></Card>
+                    <Card
+                        businessName="Hotel Name"
+                        category="Category"
+                        description="Description"
+                        profilePhoto="https://source.unsplash.com/random"
+                        productImage="https://source.unsplash.com/random"
+                    />
                     </Box>
                 </Box>
             </Box>

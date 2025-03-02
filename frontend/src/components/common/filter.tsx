@@ -98,7 +98,7 @@ const DropdownInput: React.FC<DropdownInputProps> = ({ label, value, onChange, o
             onChange={onChange}
             options={options}
             optionLabel="name"
-            placeholder={`Select ${label}`}
+            placeholder={` ${label} Seçiniz`}
             filter
             itemTemplate={(option) => (
                 <div className="flex align-items-center">

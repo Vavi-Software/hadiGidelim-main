@@ -10,7 +10,13 @@ import YoutubeSection from "../components/home/youtube-section.tsx";
 function Home() {
     // 14 Card bileşeni oluşturmak için bir diziyi döngüyle oluşturuyoruz
     const renderCards = () =>
-        Array.from({ length: 10 }, (_, index) => <Card key={index} />);
+        Array.from({ length: 10 }, (_, index) =>   <Card
+    businessName="Hotel Name"
+    category="Category"
+    description="Description"
+    profilePhoto="https://source.unsplash.com/random"
+    productImage="https://source.unsplash.com/random"
+     key={index} />);
 
     return (
         <div>
