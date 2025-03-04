@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, IconButton } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import SearchInput from "../common/searchBox.tsx";
 
 const imageArray = [
     '/ankara.png',
@@ -21,6 +20,7 @@ interface CarouselComponentProps {
 
 const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [fade, setFade] = useState(true);
 
     React.useEffect(() => {
         const interval = setInterval(() => {
@@ -31,13 +31,21 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
     }, [currentIndex]);
 
     const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % imageArray.length);
+        setFade(false);
+        setTimeout(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % imageArray.length);
+            setFade(true);
+        }, 500);
     };
 
     const handlePrev = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
-        );
+        setFade(false);
+        setTimeout(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
+            );
+            setFade(true);
+        }, 500);
     };
 
     const buttonStyles = {
@@ -72,7 +80,13 @@ const CarouselComponent: React.FC<CarouselComponentProps> = ({ height = '100vh' 
             <img
                 src={imageArray[currentIndex]}
                 alt={`Slide ${currentIndex + 1}`}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    opacity: fade ? 1 : 0,
+                    transition: 'opacity 0.5s ease-in-out',
+                }}
             />
 
             {/* İleri Butonu */}

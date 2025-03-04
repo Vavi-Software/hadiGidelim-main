@@ -3,7 +3,7 @@ import "../css/AddProduct.css";
 import Footer from "../components/common/footer.tsx";
 import RecipeReviewCard from "../components/common/card.tsx";
 
-const AddProduct: React.FC = () => {
+function AddProduct() {
   const [formData, setFormData] = useState({
     profilePhoto: "",
     businessName: "",
@@ -43,9 +43,24 @@ const AddProduct: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setShowCard(true);
+    await saveDataToApi();
+  };
+
+  const saveDataToApi = async () => {
+    const response = await fetch('https://api.example.com/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to save data to API');
+    }
   };
 
   return (
@@ -161,7 +176,6 @@ const AddProduct: React.FC = () => {
           <RecipeReviewCard
             businessName={formData.businessName}
             category={formData.category}
-            description={formData.description}
             profilePhoto={formData.profilePhoto}
             productImage={formData.productImage}
           />
@@ -170,6 +184,6 @@ const AddProduct: React.FC = () => {
       <Footer />
     </>
   );
-};
+}
 
 export default AddProduct;

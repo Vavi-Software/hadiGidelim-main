@@ -81,7 +81,6 @@ function Flavor() {
             <Card
               businessName="Hotel Name"
               category="Category"
-              description="Description"
               profilePhoto="https://source.unsplash.com/random"
               productImage="https://source.unsplash.com/random"
             />
